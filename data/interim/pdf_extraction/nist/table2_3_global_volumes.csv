@@ -1,0 +1,7 @@
+resin,global_production_share_raw,annual_global_consumption_mmt_per_yr_table2,annual_global_production_mmt_per_yr_table3,table2_pdf_page,table2_report_page,table3_pdf_page,table3_report_page,source_file
+PP,21%,52.6,48.8,17,2,18,3,data/raw/[2024  Taemin Kim] Life-Cycle Analysis Datasets for Regionalized Plastic Pathways.pdf.pdf
+LDPE,20%,92.9 (all PEs),18.6,17,2,18,3,data/raw/[2024  Taemin Kim] Life-Cycle Analysis Datasets for Regionalized Plastic Pathways.pdf.pdf
+HDPE,16%,92.9 (all PEs combined with LDPE),32.0,17,2,18,3,data/raw/[2024  Taemin Kim] Life-Cycle Analysis Datasets for Regionalized Plastic Pathways.pdf.pdf
+PVC,12%,45.6,35.4,17,2,18,3,data/raw/[2024  Taemin Kim] Life-Cycle Analysis Datasets for Regionalized Plastic Pathways.pdf.pdf
+PET,10% (excluding PET for textile),62.3 (including PET for textile),56.3,17,2,18,3,data/raw/[2024  Taemin Kim] Life-Cycle Analysis Datasets for Regionalized Plastic Pathways.pdf.pdf
+PS,8%,28.5,,17,2,,,data/raw/[2024  Taemin Kim] Life-Cycle Analysis Datasets for Regionalized Plastic Pathways.pdf.pdf

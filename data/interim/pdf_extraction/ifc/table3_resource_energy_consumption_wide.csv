@@ -1,0 +1,13 @@
+resource_or_emission_category,inputs_per_unit_of_product,mass_load_unit,european_dairies_a,swedish_dairies_b,danish_dairies_b,finnish_dairies_b,norwegian_dairies_b,industry_benchmark_c,pdf_page,report_page,table_ref,layout_note,source_file
+Water,Market milk and cultured products,L/L processed milk,,0.96–2.8,0.60–0.97,1.2–2.9,4.1,1.0–1.5,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Water,Cheese and whey,L/L processed milk,,2.0–2.5,1.2–1.7,2.0–3.1,2.5–3.8,1.4–2.0,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Water,"Milk powder, cheese, and (or) liquid products",L/L processed milk,,1.7–4.0,0.69–1.9,1.4–4.6,4.6–6.3,0.8–1.7,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Water,Ice cream,L/kg icecream,,,,,,4.0–5.0,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Energy,Market milk and cultured products,kWh/L processed milk,0.09–1.11,0.11–0.34,0.07–0.09,0.16–0.28,0.45,0.1–0.2,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Energy,Cheese and whey,kWh/L processed milk,0.06–2.08,0.15–0.34,0.12–0.18,0.27–0.82,0.21,0.2–0.3,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Energy,"Milk powder, cheese, and (or) liquid products",kWh/L processed milk,0.85–6.47,0.18–0.65,0.30–0.71,0.28–0.92,0.29–0.34,0.3–0.4,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Energy,Ice cream,KWh/kg ice cream,,0.75–1.6,,,,0.8–1.2,9,9,Table 3,"In rendered PDF page 9, '0.75–1.6' is a single merged cell spanning the four Nordic columns (Swedish, Danish, Finnish, Norwegian dairies)",data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Wastewater discharge,Market milk and cultured products,Liters/L processed milk,,0.8–2.5,0.83–0.94,1.2–2.4,2.6,0.9–1.4,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Wastewater discharge,Cheese and whey,Liters/L processed milk,,1.4–2.0,0.77–1.4,1.5–3.2,3.2,1.2–1.8,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Wastewater discharge,"Milk powder, cheese, and (or) liquid products",liters/L processed milk,,1.2–4.3,0.75–1.5,1.9–3.9,2.0–3.3,0.8–1.5,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Wastewater discharge,Ice cream,L/kg ice cream,,2.7–4.4,-,5.6,3.0–7.8,2.7– 4.0,9,9,Table 3,,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf

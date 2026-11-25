@@ -1,0 +1,309 @@
+[
+  {
+    "id": "R01",
+    "category": "validation",
+    "title": "Untouched holdout test set",
+    "severity": "low",
+    "evidence": "20% stratified/grouped holdout evaluated once per task",
+    "impact": "Holdout metrics are unbiased for fixed dev selection",
+    "mitigation": "Maintain strict holdout isolation",
+    "status": "resolved",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R02",
+    "category": "validation",
+    "title": "Model-family selection reuses the reported OOF metric",
+    "severity": "medium",
+    "evidence": "8 candidates, champion = argmin penalised OOF MAE; mitigated by 20% untouched holdout",
+    "impact": "Mild optimistic bias on OOF, largest for N=44",
+    "mitigation": "Report holdout alongside OOF",
+    "status": "mitigated",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R03",
+    "category": "label",
+    "title": "Task 3 labels are produced by the deterministic engine",
+    "severity": "high",
+    "evidence": "target = EnvironmentalResult/EconomicResult output (generate_simulated_scenario_dataset)",
+    "impact": "Metrics measure engine-copy fidelity, not real-world accuracy",
+    "mitigation": "Disclosed in model card; executive UI uses the exact engine, never the surrogate",
+    "status": "accepted",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost"
+    ]
+  },
+  {
+    "id": "R04",
+    "category": "leakage",
+    "title": "Task 3 circular target-mirror features",
+    "severity": "low",
+    "evidence": "expected_bom_material_spend and expected_spoilage_gwp removed from Task 3 features",
+    "impact": "Surrogate learns from physical/operational inputs only",
+    "mitigation": "Keep target-mirror features blocked",
+    "status": "resolved",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost"
+    ]
+  },
+  {
+    "id": "R05",
+    "category": "sample size",
+    "title": "Task 2 has only 44 observations",
+    "severity": "high",
+    "evidence": "champion OOF MAE 0.174 with fold std 0.104 (std > mean)",
+    "impact": "Performance estimate has very wide uncertainty",
+    "mitigation": "Do not use for decisions; collect more cheeses",
+    "status": "open",
+    "models": [
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R06",
+    "category": "geographic bias",
+    "title": "Training data are France/US/EU; deployment goal is Central Asia",
+    "severity": "high",
+    "evidence": "AGRIBALYSE/PDO geography = FR only; resin factors US/EU/CN/MENA; UI grid presets include Uzbekistan",
+    "impact": "Factors may not transfer to Uzbek supply chains",
+    "mitigation": "Collect local plant data; label outputs as FR-based",
+    "status": "open",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R07",
+    "category": "temporal bias",
+    "title": "Reference years span 2007-2025 and no observation date exists",
+    "severity": "medium",
+    "evidence": "packaging factor reference_year values: 2007, 2014, 2015, 2016, 2018, 2020/2024, 2022/2024, 2024; PDO tables 2020-2022",
+    "impact": "Cannot test temporal drift; mixed vintages",
+    "mitigation": "Record vintages explicitly; refresh factors",
+    "status": "accepted",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R08",
+    "category": "sampling bias",
+    "title": "Task 1 sample dominated by cheese",
+    "severity": "medium",
+    "evidence": "cheese = 47% of 255 core AGRIBALYSE products",
+    "impact": "Performance on other categories is less certain",
+    "mitigation": "Report per-category error",
+    "status": "open",
+    "models": [
+      "task1_agribalyse_gwp"
+    ]
+  },
+  {
+    "id": "R09",
+    "category": "selection bias",
+    "title": "PDO cheeses are specialty products",
+    "severity": "medium",
+    "evidence": "44 PDO cheeses only; INAO-regulated technologies",
+    "impact": "Not representative of industrial cheese",
+    "mitigation": "State scope in every PDO output",
+    "status": "accepted",
+    "models": [
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R10",
+    "category": "representation",
+    "title": "Dairy categories absent from simulator training set",
+    "severity": "low",
+    "evidence": "core categories without simulated rows: none",
+    "impact": "Surrogate cannot be trusted for missing categories",
+    "mitigation": "Extend the generator",
+    "status": "resolved",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost"
+    ]
+  },
+  {
+    "id": "R11",
+    "category": "measurement bias",
+    "title": "Many LCA factors are typed literals; part are proxies",
+    "severity": "high",
+    "evidence": "42% of 65 packaging factors are source_type=proxy; GWP/energy/water values for USLCI polymers are literals in harmonize.py, not computed from raw JSON",
+    "impact": "Exact-looking numbers may not trace to raw files",
+    "mitigation": "Compute factors from raw data or cite the page/table per literal",
+    "status": "open",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R12",
+    "category": "measurement bias",
+    "title": "Density assigned by category rule",
+    "severity": "low",
+    "evidence": "_infer_dairy_density returns one value per category",
+    "impact": "Density is a redundant proxy of category",
+    "mitigation": "Use measured density where available",
+    "status": "accepted",
+    "models": [
+      "task1_agribalyse_gwp"
+    ]
+  },
+  {
+    "id": "R13",
+    "category": "feature validity",
+    "title": "Task 1 co-computed LCIA indicator leakage",
+    "severity": "low",
+    "evidence": "Co-computed LCIA midpoint indicators and stage GWPs are blocked by FORBIDDEN_LEAKAGE_COLUMNS",
+    "impact": "Task 1 uses pre-LCA attributes only",
+    "mitigation": "Keep co-computed LCIA indicators blocked",
+    "status": "resolved",
+    "models": [
+      "task1_agribalyse_gwp"
+    ]
+  },
+  {
+    "id": "R14",
+    "category": "proxy variable",
+    "title": "preset_id / category act as identity proxies",
+    "severity": "medium",
+    "evidence": "preset_id nearly determines package BOM in Task 3",
+    "impact": "Model may memorise presets rather than physics",
+    "mitigation": "Ablate identity features",
+    "status": "open",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost"
+    ]
+  },
+  {
+    "id": "R15",
+    "category": "distribution shift",
+    "title": "Executive presets vs simulator training ranges",
+    "severity": "low",
+    "evidence": "0 preset/feature values outside the simulated range: []",
+    "impact": "Out-of-range scenarios extrapolate",
+    "mitigation": "Widen generator ranges or block predictions",
+    "status": "resolved",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost"
+    ]
+  },
+  {
+    "id": "R16",
+    "category": "monitoring",
+    "title": "No drift or performance monitoring",
+    "severity": "medium",
+    "evidence": "code scan for 'drift'/'monitor' outside audit layer: 1 hits",
+    "impact": "Silent degradation after data refresh",
+    "mitigation": "Add scheduled checksum + metric checks",
+    "status": "open",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R17",
+    "category": "reproducibility",
+    "title": "Historical training metadata not recorded",
+    "severity": "medium",
+    "evidence": "No VCS commit, training duration, dependency versions or experiment IDs existed before this audit layer",
+    "impact": "Past results cannot be exactly reproduced",
+    "mitigation": "Use the experiment tracker from now on; initialise git",
+    "status": "mitigated",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R18",
+    "category": "uncertainty",
+    "title": "No calibrated prediction intervals",
+    "severity": "medium",
+    "evidence": "Only empirical OOF absolute-error quantiles are available",
+    "impact": "Users may over-read point predictions",
+    "mitigation": "Conformal prediction on a holdout",
+    "status": "open",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R19",
+    "category": "leakage",
+    "title": "Near-duplicate feature vectors across folds",
+    "severity": "low",
+    "evidence": "task3a_surrogate_gwp: 0 validation rows have an exact feature-vector twin in their training fold; task3b_surrogate_cost: 0 validation rows have an exact feature-vector twin in their training fold; task1_agribalyse_gwp: 76 validation rows have an exact feature-vector twin in their training fold; task2a_pdo_cheese_total: 0 validation rows have an exact feature-vector twin in their training fold; task2b_pdo_cheese_post_farm: 0 validation rows have an exact feature-vector twin in their training fold",
+    "impact": "Slightly optimistic CV",
+    "mitigation": "Group near-duplicates",
+    "status": "accepted",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  },
+  {
+    "id": "R20",
+    "category": "interpretation",
+    "title": "Importance/attribution methods are not causal",
+    "severity": "low",
+    "evidence": "Permutation importance with correlated features; local attribution is marginal replacement, not exact SHAP",
+    "impact": "Misreading as causal drivers",
+    "mitigation": "State limitation next to every chart",
+    "status": "accepted",
+    "models": [
+      "task3a_surrogate_gwp",
+      "task3b_surrogate_cost",
+      "task1_agribalyse_gwp",
+      "task2a_pdo_cheese_total",
+      "task2b_pdo_cheese_post_farm"
+    ]
+  }
+]

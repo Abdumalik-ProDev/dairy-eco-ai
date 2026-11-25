@@ -1,0 +1,36 @@
+entity,entity_type,region,value,unit,deviation_from_avg_pct,rank_in_table1,pdf_page,report_page,figure_or_table_ref,rendered_page_path
+PET,virgin_resin,Cross-regional average,1.91,kgCO2e/kg,0.0,Cross-regional average,14,xi,Table 1 & Figure 1(a) & Figure 16(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_14-14.png
+PET,virgin_resin,USA,1.86,kgCO2e/kg,-3.0,2nd,33,18,Figure 1(a) & Figure 16(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_33-33.png
+PET,virgin_resin,Western Europe,1.75,kgCO2e/kg,-9.0,1st (Min. CI),33,18,Figure 1(a) & Figure 16(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_33-33.png
+PET,virgin_resin,MENA,2.13,kgCO2e/kg,11.0,4th (Max. CI),33,18,Figure 1(a) & Figure 16(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_33-33.png
+PET,virgin_resin,China,1.92,kgCO2e/kg,0.0,3rd,33,18,Figure 1(a) & Figure 16(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_33-33.png
+HDPE,virgin_resin,Cross-regional average,1.42,kgCO2e/kg,0.0,Cross-regional average,14,xi,Table 1 & Figure 20(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_14-14.png
+HDPE,virgin_resin,USA,1.32,kgCO2e/kg,-7.0,1st (Min. CI),37,22,Figure 20(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_37-37.png
+HDPE,virgin_resin,Western Europe,1.35,kgCO2e/kg,-5.0,2nd,37,22,Figure 20(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_37-37.png
+HDPE,virgin_resin,MENA,1.47,kgCO2e/kg,4.0,3rd,37,22,Figure 20(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_37-37.png
+HDPE,virgin_resin,China,1.52,kgCO2e/kg,7.0,4th (Max. CI),37,22,Figure 20(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_37-37.png
+LDPE,virgin_resin,Cross-regional average,1.81,kgCO2e/kg,0.0,Cross-regional average,14,xi,Table 1 & Figure 21(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_14-14.png
+LDPE,virgin_resin,USA,1.66,kgCO2e/kg,-8.0,2nd,38,23,Figure 21(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_38-38.png
+LDPE,virgin_resin,Western Europe,1.65,kgCO2e/kg,-9.0,1st (Min. CI),38,23,Figure 21(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_38-38.png
+LDPE,virgin_resin,MENA,1.97,kgCO2e/kg,9.0,4th (Max. CI),38,23,Figure 21(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_38-38.png
+LDPE,virgin_resin,China,1.94,kgCO2e/kg,8.0,3rd,38,23,Figure 21(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_38-38.png
+PP,virgin_resin,Cross-regional average,1.25,kgCO2e/kg,0.0,Cross-regional average,14,xi,Table 1 & Figure 22(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_14-14.png
+PP,virgin_resin,USA,1.15,kgCO2e/kg,-8.0,1st (Min. CI),39,24,Figure 22(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_39-39.png
+PP,virgin_resin,Western Europe,1.28,kgCO2e/kg,2.0,2nd,39,24,Figure 22(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_39-39.png
+PP,virgin_resin,MENA,1.28,kgCO2e/kg,2.0,3rd,39,24,Figure 22(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_39-39.png
+PP,virgin_resin,China,1.29,kgCO2e/kg,3.0,4th (Max. CI),39,24,Figure 22(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_39-39.png
+PVC,virgin_resin,Cross-regional average,2.68,kgCO2e/kg,0.0,Cross-regional average,14,xi,Table 1 & Figure 24(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_14-14.png
+PVC,virgin_resin,USA,2.25,kgCO2e/kg,-16.0,2nd,41,26,Figure 24(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_41-41.png
+PVC,virgin_resin,Western Europe,2.22,kgCO2e/kg,-17.0,1st (Min. CI),41,26,Figure 24(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_41-41.png
+PVC,virgin_resin,MENA,2.66,kgCO2e/kg,-1.0,3rd,41,26,Figure 24(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_41-41.png
+PVC,virgin_resin,China,3.57,kgCO2e/kg,34.0,4th (Max. CI),41,26,Figure 24(a) & Table 1,data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_41-41.png
+Electricity grid mix,background_energy,Cross-regional average,573.0,gCO2e/kWh,0.0,,35,20,Figure 18(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png
+Electricity grid mix,background_energy,USA,466.0,gCO2e/kWh,-19.0,,35,20,Figure 18(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png
+Electricity grid mix,background_energy,Western Europe,285.0,gCO2e/kWh,-50.0,,35,20,Figure 18(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png
+Electricity grid mix,background_energy,MENA,840.0,gCO2e/kWh,47.0,,35,20,Figure 18(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png
+Electricity grid mix,background_energy,China,700.0,gCO2e/kWh,22.0,,35,20,Figure 18(a),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png
+Natural gas supply,background_energy,Cross-regional average,15.0,gCO2e/MJ,0.0,,35,20,Figure 18(b),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png
+Natural gas supply,background_energy,USA,13.0,gCO2e/MJ,-16.0,,35,20,Figure 18(b),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png
+Natural gas supply,background_energy,Western Europe,20.0,gCO2e/MJ,29.0,,35,20,Figure 18(b),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png
+Natural gas supply,background_energy,MENA,18.0,gCO2e/MJ,19.0,,35,20,Figure 18(b),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png
+Natural gas supply,background_energy,China,11.0,gCO2e/MJ,-32.0,,35,20,Figure 18(b),data/interim/pdf_extraction/nist/page_renders/nist_pdfpage_35-35.png

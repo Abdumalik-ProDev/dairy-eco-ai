@@ -1,0 +1,294 @@
+{
+  "task3a_surrogate_gwp": {
+    "level": "experimental",
+    "gates": [
+      {
+        "id": "G1",
+        "name": "No leakage / split violations",
+        "status": "pass",
+        "evidence": "all structural checks pass"
+      },
+      {
+        "id": "G2",
+        "name": "Generalisation (train vs OOF)",
+        "status": "pass",
+        "evidence": "fit_diagnosis=well_generalized, R2 gap=0.0149"
+      },
+      {
+        "id": "G3",
+        "name": "Beats baseline by >= 50% MAE",
+        "status": "pass",
+        "evidence": "improvement 79.0% vs DummyRegressor_Median"
+      },
+      {
+        "id": "G4",
+        "name": "Independent untouched test set",
+        "status": "pass",
+        "evidence": "239 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split"
+      },
+      {
+        "id": "G5",
+        "name": "Labels measured or published (not model-derived)",
+        "status": "fail",
+        "evidence": "source_type=model_derived"
+      },
+      {
+        "id": "G6",
+        "name": "Validated on real observed plant/market data",
+        "status": "fail",
+        "evidence": "No external validation record exists in the project (Not recorded / Unknown)"
+      },
+      {
+        "id": "G7",
+        "name": "Monitoring / drift detection in place",
+        "status": "pass",
+        "evidence": "1 code references to drift/monitoring"
+      },
+      {
+        "id": "G8",
+        "name": "Reproducible experiment record",
+        "status": "partial",
+        "evidence": "Reconstructed historical record exists; training-time code/env/duration not recorded"
+      }
+    ],
+    "blockers": [
+      "G5 Labels measured or published (not model-derived): source_type=model_derived",
+      "G6 Validated on real observed plant/market data: No external validation record exists in the project (Not recorded / Unknown)",
+      "G8 Reproducible experiment record: Reconstructed historical record exists; training-time code/env/duration not recorded"
+    ],
+    "rule": "not_suitable if G1-G3 fail; research_prototype if G4 fails; experimental if G5 or G6 fail; validated if G7/G8 not both pass; else production_candidate"
+  },
+  "task3b_surrogate_cost": {
+    "level": "experimental",
+    "gates": [
+      {
+        "id": "G1",
+        "name": "No leakage / split violations",
+        "status": "pass",
+        "evidence": "all structural checks pass"
+      },
+      {
+        "id": "G2",
+        "name": "Generalisation (train vs OOF)",
+        "status": "pass",
+        "evidence": "fit_diagnosis=well_generalized, R2 gap=0.0093"
+      },
+      {
+        "id": "G3",
+        "name": "Beats baseline by >= 50% MAE",
+        "status": "pass",
+        "evidence": "improvement 81.9% vs DummyRegressor_Median"
+      },
+      {
+        "id": "G4",
+        "name": "Independent untouched test set",
+        "status": "pass",
+        "evidence": "239 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split"
+      },
+      {
+        "id": "G5",
+        "name": "Labels measured or published (not model-derived)",
+        "status": "fail",
+        "evidence": "source_type=model_derived"
+      },
+      {
+        "id": "G6",
+        "name": "Validated on real observed plant/market data",
+        "status": "fail",
+        "evidence": "No external validation record exists in the project (Not recorded / Unknown)"
+      },
+      {
+        "id": "G7",
+        "name": "Monitoring / drift detection in place",
+        "status": "pass",
+        "evidence": "1 code references to drift/monitoring"
+      },
+      {
+        "id": "G8",
+        "name": "Reproducible experiment record",
+        "status": "partial",
+        "evidence": "Reconstructed historical record exists; training-time code/env/duration not recorded"
+      }
+    ],
+    "blockers": [
+      "G5 Labels measured or published (not model-derived): source_type=model_derived",
+      "G6 Validated on real observed plant/market data: No external validation record exists in the project (Not recorded / Unknown)",
+      "G8 Reproducible experiment record: Reconstructed historical record exists; training-time code/env/duration not recorded"
+    ],
+    "rule": "not_suitable if G1-G3 fail; research_prototype if G4 fails; experimental if G5 or G6 fail; validated if G7/G8 not both pass; else production_candidate"
+  },
+  "task1_agribalyse_gwp": {
+    "level": "experimental",
+    "gates": [
+      {
+        "id": "G1",
+        "name": "No leakage / split violations",
+        "status": "pass",
+        "evidence": "all structural checks pass"
+      },
+      {
+        "id": "G2",
+        "name": "Generalisation (train vs OOF)",
+        "status": "pass",
+        "evidence": "fit_diagnosis=well_generalized, R2 gap=0.0347"
+      },
+      {
+        "id": "G3",
+        "name": "Beats baseline by >= 50% MAE",
+        "status": "pass",
+        "evidence": "improvement 62.8% vs DummyRegressor_Median"
+      },
+      {
+        "id": "G4",
+        "name": "Independent untouched test set",
+        "status": "pass",
+        "evidence": "51 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split"
+      },
+      {
+        "id": "G5",
+        "name": "Labels measured or published (not model-derived)",
+        "status": "pass",
+        "evidence": "source_type=published_reference"
+      },
+      {
+        "id": "G6",
+        "name": "Validated on real observed plant/market data",
+        "status": "fail",
+        "evidence": "No external validation record exists in the project (Not recorded / Unknown)"
+      },
+      {
+        "id": "G7",
+        "name": "Monitoring / drift detection in place",
+        "status": "pass",
+        "evidence": "1 code references to drift/monitoring"
+      },
+      {
+        "id": "G8",
+        "name": "Reproducible experiment record",
+        "status": "partial",
+        "evidence": "Reconstructed historical record exists; training-time code/env/duration not recorded"
+      }
+    ],
+    "blockers": [
+      "G6 Validated on real observed plant/market data: No external validation record exists in the project (Not recorded / Unknown)",
+      "G8 Reproducible experiment record: Reconstructed historical record exists; training-time code/env/duration not recorded"
+    ],
+    "rule": "not_suitable if G1-G3 fail; research_prototype if G4 fails; experimental if G5 or G6 fail; validated if G7/G8 not both pass; else production_candidate"
+  },
+  "task2a_pdo_cheese_total": {
+    "level": "experimental",
+    "gates": [
+      {
+        "id": "G1",
+        "name": "No leakage / split violations",
+        "status": "pass",
+        "evidence": "all structural checks pass"
+      },
+      {
+        "id": "G2",
+        "name": "Generalisation (train vs OOF)",
+        "status": "pass",
+        "evidence": "fit_diagnosis=well_generalized, R2 gap=0.012"
+      },
+      {
+        "id": "G3",
+        "name": "Beats baseline by >= 50% MAE",
+        "status": "pass",
+        "evidence": "improvement 91.7% vs DummyRegressor_Median"
+      },
+      {
+        "id": "G4",
+        "name": "Independent untouched test set",
+        "status": "pass",
+        "evidence": "9 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split"
+      },
+      {
+        "id": "G5",
+        "name": "Labels measured or published (not model-derived)",
+        "status": "pass",
+        "evidence": "source_type=published_reference"
+      },
+      {
+        "id": "G6",
+        "name": "Validated on real observed plant/market data",
+        "status": "fail",
+        "evidence": "No external validation record exists in the project (Not recorded / Unknown)"
+      },
+      {
+        "id": "G7",
+        "name": "Monitoring / drift detection in place",
+        "status": "pass",
+        "evidence": "1 code references to drift/monitoring"
+      },
+      {
+        "id": "G8",
+        "name": "Reproducible experiment record",
+        "status": "partial",
+        "evidence": "Reconstructed historical record exists; training-time code/env/duration not recorded"
+      }
+    ],
+    "blockers": [
+      "G6 Validated on real observed plant/market data: No external validation record exists in the project (Not recorded / Unknown)",
+      "G8 Reproducible experiment record: Reconstructed historical record exists; training-time code/env/duration not recorded"
+    ],
+    "rule": "not_suitable if G1-G3 fail; research_prototype if G4 fails; experimental if G5 or G6 fail; validated if G7/G8 not both pass; else production_candidate"
+  },
+  "task2b_pdo_cheese_post_farm": {
+    "level": "experimental",
+    "gates": [
+      {
+        "id": "G1",
+        "name": "No leakage / split violations",
+        "status": "pass",
+        "evidence": "all structural checks pass"
+      },
+      {
+        "id": "G2",
+        "name": "Generalisation (train vs OOF)",
+        "status": "pass",
+        "evidence": "fit_diagnosis=well_generalized, R2 gap=0.0"
+      },
+      {
+        "id": "G3",
+        "name": "Beats baseline by >= 50% MAE",
+        "status": "pass",
+        "evidence": "improvement 99.5% vs DummyRegressor_Median"
+      },
+      {
+        "id": "G4",
+        "name": "Independent untouched test set",
+        "status": "pass",
+        "evidence": "9 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split"
+      },
+      {
+        "id": "G5",
+        "name": "Labels measured or published (not model-derived)",
+        "status": "pass",
+        "evidence": "source_type=published_reference"
+      },
+      {
+        "id": "G6",
+        "name": "Validated on real observed plant/market data",
+        "status": "fail",
+        "evidence": "No external validation record exists in the project (Not recorded / Unknown)"
+      },
+      {
+        "id": "G7",
+        "name": "Monitoring / drift detection in place",
+        "status": "pass",
+        "evidence": "1 code references to drift/monitoring"
+      },
+      {
+        "id": "G8",
+        "name": "Reproducible experiment record",
+        "status": "partial",
+        "evidence": "Reconstructed historical record exists; training-time code/env/duration not recorded"
+      }
+    ],
+    "blockers": [
+      "G6 Validated on real observed plant/market data: No external validation record exists in the project (Not recorded / Unknown)",
+      "G8 Reproducible experiment record: Reconstructed historical record exists; training-time code/env/duration not recorded"
+    ],
+    "rule": "not_suitable if G1-G3 fail; research_prototype if G4 fails; experimental if G5 or G6 fail; validated if G7/G8 not both pass; else production_candidate"
+  }
+}

@@ -1,0 +1,18 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Raw immutable downloads (8,096 files / 245 MB; SHA-256 pinned in data/metadata/raw_file_inventory.csv)
+data/raw/
+
+# OS / IDE
+.DS_Store
+*.swp
+*.agents/
+*.streamlit/
+vision.md

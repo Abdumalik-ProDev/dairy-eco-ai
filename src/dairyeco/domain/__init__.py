@@ -1,0 +1,43 @@
+"""Domain models and value objects for DairyEco AI."""
+
+from dairyeco.domain.models import (
+    FOSSIL_PLASTIC_MATERIALS,
+    POLYMER_MATERIALS,
+    ConversionProcess,
+    DairyCategory,
+    DairyProductRecord,
+    DataSourceType,
+    EconomicResult,
+    EnvironmentalResult,
+    FeasibilityCheckResult,
+    ImpactFactorRecord,
+    MaterialFamily,
+    PackageComponentBOM,
+    PackageConfiguration,
+    PackageFormat,
+    ProvenanceRecord,
+    ReuseParameters,
+    ScenarioAssumptions,
+    ScenarioComparisonResult,
+)
+
+__all__ = [
+    "FOSSIL_PLASTIC_MATERIALS",
+    "POLYMER_MATERIALS",
+    "ConversionProcess",
+    "DairyCategory",
+    "DairyProductRecord",
+    "DataSourceType",
+    "EconomicResult",
+    "EnvironmentalResult",
+    "FeasibilityCheckResult",
+    "ImpactFactorRecord",
+    "MaterialFamily",
+    "PackageComponentBOM",
+    "PackageConfiguration",
+    "PackageFormat",
+    "ProvenanceRecord",
+    "ReuseParameters",
+    "ScenarioAssumptions",
+    "ScenarioComparisonResult",
+]

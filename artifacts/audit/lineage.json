@@ -1,0 +1,195 @@
+{
+  "flows": {
+    "agribalyse_dairy_products": [
+      {
+        "step": 1,
+        "operation": "Read 'Synthese' sheet (all food products)",
+        "rows_before": null,
+        "rows_after": 2458,
+        "join": "-",
+        "code": "src/dairyeco/data/harmonize.py::build_agribalyse_dairy_table",
+        "note": "2451 unique Code AGB; 7 duplicated codes are all non-dairy"
+      },
+      {
+        "step": 2,
+        "operation": "Filter dairy: group 'lait et produits laitiers' or core subgroups (+ adjacent infant/beverage dairy)",
+        "rows_before": 2458,
+        "rows_after": 277,
+        "join": "-",
+        "code": "src/dairyeco/data/harmonize.py::build_agribalyse_dairy_table",
+        "note": "inspector counts 255 core rows"
+      },
+      {
+        "step": 3,
+        "operation": "Join 'Detail etape' stage table on (Code AGB, LCI name)",
+        "rows_before": 277,
+        "rows_after": 277,
+        "join": "INNER via dict lookup; products without a stage row are skipped silently in code (no unmatched log is written)",
+        "cardinality": "1:1",
+        "code": "src/dairyeco/data/harmonize.py::build_agribalyse_dairy_table",
+        "note": "core rows: inspector 255 vs processed 255 -> unmatched core rows = 0"
+      },
+      {
+        "step": 4,
+        "operation": "De-package: non_packaging = max(0, total - Emballage stage)",
+        "rows_before": 255,
+        "rows_after": 255,
+        "join": "-",
+        "code": "src/dairyeco/data/harmonize.py::build_agribalyse_dairy_table",
+        "note": "max |total - pack - non_pack| on rows where total>=pack = 1.78e-15 (double-count check); rows clipped at 0: 0"
+      },
+      {
+        "step": 5,
+        "operation": "Reconciliation: sum of 6 stage columns vs Synthese total",
+        "rows_before": 255,
+        "rows_after": 255,
+        "join": "-",
+        "code": "src/dairyeco/data/harmonize.py",
+        "note": "mean gap -0.0259, max |gap| 0.0764 kg CO2e/kg (231 core rows differ by >0.001)"
+      }
+    ],
+    "pdo_cheese_harmonized": [
+      {
+        "step": 1,
+        "operation": "Read 7 cheese-level workbooks",
+        "rows_before": null,
+        "rows_after": 352,
+        "join": "-",
+        "code": "src/dairyeco/data/harmonize.py::build_pdo_cheese_harmonized_table",
+        "note": "rows per table: {'characterization': 44, 'allocations': 44, 'coproducts': 44, 'distances': 44, 'specifications': 44, 'lci_initial': 44, 'lci_additional': 44, 'lcia': 44}"
+      },
+      {
+        "step": 2,
+        "operation": "Normalise cheese names (strip + 'Camenbert'->'Camembert')",
+        "rows_before": 352,
+        "rows_after": 352,
+        "join": "-",
+        "code": "src/dairyeco/data/audit_inspectors.py::normalize_pdo_cheese_name",
+        "note": "44 cheeses had raw-name mismatches across tables"
+      },
+      {
+        "step": 3,
+        "operation": "Join 7 tables on normalised name (canonical order from characterization)",
+        "rows_before": 308,
+        "rows_after": 44,
+        "join": "INNER via dict lookup per table (KeyError would abort - no silent loss)",
+        "cardinality": "1:1 per table",
+        "code": "src/dairyeco/data/harmonize.py::build_pdo_cheese_harmonized_table",
+        "note": "exactly 44 canonical cheeses enforced by ValueError guard"
+      },
+      {
+        "step": 4,
+        "operation": "Pivot long LCIA (1,232 indicator rows) to one row per cheese",
+        "rows_before": 1232,
+        "rows_after": 44,
+        "join": "group by cheese, pick 5 indicators",
+        "code": "src/dairyeco/data/harmonize.py::build_pdo_cheese_harmonized_table",
+        "note": "1,232 = 44 cheeses x 28 indicators; never used as independent samples"
+      }
+    ],
+    "uslci_curated_factors": [
+      {
+        "step": 1,
+        "operation": "Scan all openLCA process JSON",
+        "rows_before": null,
+        "rows_after": 1434,
+        "join": "-",
+        "code": "src/dairyeco/data/audit_inspectors.py::inspect_uslci",
+        "note": "97 bridge processes with 0 elementary flows"
+      },
+      {
+        "step": 2,
+        "operation": "Select curated processes by UUID prefix; normalise reference units to kg",
+        "rows_before": 1434,
+        "rows_after": 56,
+        "join": "UUID prefix lookup",
+        "code": "src/dairyeco/data/harmonize.py::build_uslci_curated_table",
+        "note": "unit conversions: Mg, t, sh tn, lb -> kg"
+      }
+    ],
+    "packaging_impact_factors": [
+      {
+        "step": 1,
+        "operation": "Assemble LCA factor catalogue from NIST CSV + USLCI table + literal constants",
+        "rows_before": 56,
+        "rows_after": 65,
+        "join": "USLCI joined by UUID 8-char prefix (LEFT-style dict lookup)",
+        "code": "src/dairyeco/data/harmonize.py::build_unified_packaging_impact_factors",
+        "note": "factor_id by source_type: {'published_reference': 38, 'proxy': 27}"
+      }
+    ],
+    "simulated_packaging_scenarios": [
+      {
+        "step": 1,
+        "operation": "Sample products x presets x perturbations; run deterministic LCA+economics engine",
+        "rows_before": 255,
+        "rows_after": 1200,
+        "join": "none (generated)",
+        "code": "src/dairyeco/models/pipeline.py::generate_simulated_scenario_dataset",
+        "note": "254 distinct products sampled (with replacement) into 1,200 rows; infeasible combinations are rejected by check_scenario_feasibility"
+      }
+    ]
+  },
+  "compatibility_matrix": [
+    {
+      "dataset_id": "agribalyse_3_2",
+      "functional_unit": "1 kg of food product consumed at the consumer (food workbook); 1 kg of agricultural product at farm gate (agriculture workbooks)",
+      "system_boundary": "Cradle-to-grave / field-to-plate across 6 stages (Agriculture, Transformation, Emballage, Transport, Supermarch\u00e9 et distribution, Consommation) for food products; cradle-to-farm-gate for agricultural products",
+      "lcia_method": "EF 3.1 adapted for SimaPro v1.00 (EF 3.1 normalization/weighting single score mPt + 16 midpoint indicators + 3 climate sub-indicators; long-term emissions included)",
+      "geography": "FR (France consumption mix for food products; France farm gate for agriculture)",
+      "reference_year": "2024 (v3.2 calculations; background Ecoinvent 3.9.1, WFLDB 3.5, CIQUAL 2020)"
+    },
+    {
+      "dataset_id": "pdo_cheese_lca",
+      "functional_unit": "1 kg of ripened cheese (FU = 1kg of cheese)",
+      "system_boundary": "Cradle-to-ripened-cheese factory/shared-cellar exit gate across 7 base stages (Milk production, Milk transport, Milk pumping, Milk storage, Milk processing, Cheese ripening, Equipment cleaning) plus Cheese transport in Alternative scenario; excludes packaging, retail and consumer stages",
+      "lcia_method": "EF 3.0 / ILCD-compatible 28-indicator midpoint suite (16 main categories + 3 climate sub-indicators + 9 toxicity/ecotoxicity chemical-group sub-indicators; no single score)",
+      "geography": "FR (44 French Protected Designation of Origin cheese supply chains; Ecoinvent 3 FR/RER/GLO & AGRIBALYSE 3.0 FR)",
+      "reference_year": "2020-2022 (PDO specifications accessed 2020; workbooks modified 2022; AGRIBALYSE 3.0 milk)"
+    },
+    {
+      "dataset_id": "uslci",
+      "functional_unit": "Process-specific quantitative reference flow (primarily 1 kg, 1000 kg, 1.10516007 kg, 13.5 kg, 1 Mg, 1 sh tn = 907.18474 kg, 1 t*km, 1 m3, 1 l, 1 MJ, or 1 kWh)",
+      "system_boundary": "Gate-to-gate unit processes (1,408 UNIT_PROCESS) and cradle-to-gate aggregated processes (26 LCI_RESULT)",
+      "lcia_method": "None bundled in export (0 lcia_methods in JSON-LD; requires external TRACI/IPCC/EF characterization factors)",
+      "geography": "US / Northern America primary (730 US, 182 Northern America, 96 Global, 391 unspecified/regional variants)",
+      "reference_year": "1990-2025 (virgin polyolefins 2014-2016, PET/PVC 2022, rPET/rHDPE/rPP 2016, containerboard 2013-2014, trucking 2024)"
+    },
+    {
+      "dataset_id": "anl_nist_regional_plastics_2024",
+      "functional_unit": "1 kg of virgin plastic resin (PET, HDPE, LDPE, PP, PVC) or 1 kg of olefin monomer (ethylene, propylene); also 1 kWh electricity and 1 MJ natural gas in Figure 18",
+      "system_boundary": "Cradle-to-gate virgin resin / monomer production (raw material extraction through monomer and polymerization at plant gate; excludes package conversion, transport to dairy, filling and end-of-life)",
+      "lcia_method": "GREET 2022 100-year GHG Carbon Intensity (kg CO2e / kg, covering CO2, CH4, N2O)",
+      "geography": "USA, Western Europe, MENA (Middle East and North Africa), China, and 4-region Cross-regional average",
+      "reference_year": "2024 report (GREET 2022 model; 2020 IEA electricity/NG data; 2010-2016 baseline technology shares with 2019-2022 sensitivity)"
+    },
+    {
+      "dataset_id": "ifc_wbg_ehs_dairy_2007",
+      "functional_unit": "Per unit of processed milk or product: L/L processed milk, kWh/L processed milk, Liters/L processed milk, kg/1000 l (solid waste), L/kg ice cream, KWh/kg ice cream; mg/l, pH, degC, MPN/100 ml for effluent guidelines",
+      "system_boundary": "Gate-to-gate dairy processing facility operations (milk reception, processing, CIP cleaning, utilities, wastewater discharge and solid waste; excludes raw milk farming and upstream packaging manufacture)",
+      "lcia_method": "Operational intensity benchmarks and regulatory/guideline effluent concentration limits (not LCIA)",
+      "geography": "International guideline; Table 2-3 benchmarks from European, Swedish, Danish, Finnish and Norwegian dairies",
+      "reference_year": "2007 publication (underlying plant survey benchmarks from 2001-2002 / EC 2006 BREF)"
+    }
+  ],
+  "integration_decisions": [
+    {
+      "combination": "AGRIBALYSE (cradle-to-grave, incl. baseline packaging) x packaging factor catalogue",
+      "why": "Executive scenarios swap packaging; baseline packaging must be removed first",
+      "safeguard": "non_packaging = total - Emballage stage before adding new packaging impacts (prevents double counting)",
+      "residual_risk": "Other stages (transport, distribution) still embed AGRIBALYSE packaging assumptions"
+    },
+    {
+      "combination": "AGRIBALYSE x PDO cheese",
+      "why": "Not combined",
+      "safeguard": "Different FU boundary (consumer vs ripening exit), LCIA method (EF 3.1 vs EF 3.0/ILCD) and exclusion of packaging; kept as separate ML tasks",
+      "residual_risk": "None from merging; cheese predictions are not comparable across tasks"
+    },
+    {
+      "combination": "NIST/ANL resin GWP (GREET 2022) x USLCI (IPCC AR6 characterised here) x proxies",
+      "why": "No single source covers all packaging materials, conversion, transport and EoL",
+      "safeguard": "Each factor carries source_dataset_id, source_type, lcia_method, system_boundary",
+      "residual_risk": "Mixed LCIA methods and geographies in one catalogue; many values are literals typed in harmonize.py rather than computed from raw files"
+    }
+  ]
+}

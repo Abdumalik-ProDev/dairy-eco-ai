@@ -1,0 +1,11 @@
+pollutant,original_unit,guideline_value_raw,footnote_key,footnote_text,pdf_page,report_page,table_ref,source_file
+pH,pH,6 – 9,,,8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+BOD5,mg/l,50,,,8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+COD,mg/l,250,,,8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Total nitrogen,mg/l,10,,,8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Total phosphorus,mg/l,2,,,8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Oil and grease,mg/l,10,,,8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Total suspended solids,mg/l,50,,,8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Temperature increase,°C,<3b,b,"At the edge of a scientifically established mixing zone which takes into account ambient water quality, receiving water use, potential receptors and assimilative capacity",8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Total coliform bacteria,MPNa / 100 ml,400,a,MPN = Most Probable Number,8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf
+Active Ingredients / Antibiotics,case-specific,To be determined on a case specific basis,,,8,8,Table 1,data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf

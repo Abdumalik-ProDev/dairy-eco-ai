@@ -1,0 +1,110 @@
+[
+  {
+    "stage": "Data discovery",
+    "status": "partial",
+    "evidence": "reports/dataset_audit.md documents the sources found; discovery process and rejected candidates not recorded",
+    "code": "reports/dataset_audit.md"
+  },
+  {
+    "stage": "Dataset selection",
+    "status": "partial",
+    "evidence": "dataset_manifest.csv lists 5 sources with intended use; alternatives Not recorded / Unknown",
+    "code": "data/metadata/dataset_manifest.csv"
+  },
+  {
+    "stage": "Data acquisition",
+    "status": "implemented",
+    "evidence": "8096 raw files inventoried with SHA-256; download_date field in manifest",
+    "code": "src/dairyeco/data/inventory.py"
+  },
+  {
+    "stage": "Data profiling",
+    "status": "implemented",
+    "evidence": "audit_inspectors.py + reports/data_quality_report.md (18 findings)",
+    "code": "src/dairyeco/data/audit_inspectors.py"
+  },
+  {
+    "stage": "Data cleaning",
+    "status": "implemented",
+    "evidence": "documented in the Cleaning log",
+    "code": "src/dairyeco/data/harmonize.py"
+  },
+  {
+    "stage": "Data integration",
+    "status": "implemented",
+    "evidence": "documented in the Lineage page",
+    "code": "src/dairyeco/data/harmonize.py"
+  },
+  {
+    "stage": "Feature engineering",
+    "status": "implemented",
+    "evidence": "documented in the Feature registry",
+    "code": "src/dairyeco/models/pipeline.py"
+  },
+  {
+    "stage": "EDA",
+    "status": "partial",
+    "evidence": "No EDA was persisted by the original pipeline; this audit layer computes and stores it",
+    "code": "src/dairyeco/audit/data_records.py::build_eda"
+  },
+  {
+    "stage": "Model selection",
+    "status": "implemented",
+    "evidence": "8 candidates compared per task",
+    "code": "src/dairyeco/models/pipeline.py::_candidate_regressors"
+  },
+  {
+    "stage": "Training",
+    "status": "implemented",
+    "evidence": "Nested CV training; duration not recorded",
+    "code": "src/dairyeco/models/pipeline.py"
+  },
+  {
+    "stage": "Hyperparameter optimisation",
+    "status": "implemented",
+    "evidence": "Nested GridSearchCV/RidgeCV/ElasticNetCV",
+    "code": "src/dairyeco/models/pipeline.py"
+  },
+  {
+    "stage": "Validation",
+    "status": "implemented",
+    "evidence": "Stratified / Group K-fold OOF",
+    "code": "src/dairyeco/models/pipeline.py"
+  },
+  {
+    "stage": "Testing",
+    "status": "partial",
+    "evidence": "No independent holdout (CV only)",
+    "code": "src/dairyeco/audit/splits.py"
+  },
+  {
+    "stage": "Explainability",
+    "status": "partial",
+    "evidence": "OOF permutation importance persisted; local attribution is SHAP-style marginal replacement, not true SHAP",
+    "code": "src/dairyeco/dashboard/dev_mode.py::compute_local_feature_attributions"
+  },
+  {
+    "stage": "Model evaluation",
+    "status": "implemented",
+    "evidence": "ml_evaluation_summary.json + reports/model_cards.md",
+    "code": "reports/model_cards.md"
+  },
+  {
+    "stage": "Deployment",
+    "status": "partial",
+    "evidence": "joblib artifacts loaded by Developer Mode; API loads surrogate: False; executive UI uses deterministic engines only",
+    "code": "src/dairyeco/dashboard/dev_mode.py::load_ml_artifacts"
+  },
+  {
+    "stage": "Inference",
+    "status": "partial",
+    "evidence": "Live inference only for Task 3 surrogates in Developer Mode",
+    "code": "src/dairyeco/dashboard/dev_mode.py"
+  },
+  {
+    "stage": "Monitoring",
+    "status": "partial",
+    "evidence": "1 drift/monitoring references found",
+    "code": "-"
+  }
+]

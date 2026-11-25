@@ -1,0 +1,586 @@
+{
+  "manifest": [
+    {
+      "dataset_id": "agribalyse_3_2",
+      "title": "AGRIBALYSE 3.2 \u2014 French Agricultural and Food Product LCA Spreadsheets and Methodological Documentation",
+      "provider": "ADEME, INRAE (Means-InOut), GIS REVALIM, EVEA S.A. Coop\u00e9rative",
+      "version": "v3.2 (September 2024 release; food products workbook published Aug 2025; conventional agriculture workbook updated 18/11/2025; organic updated 12/11/2024)",
+      "url": "https://www.agribalyse.fr",
+      "download_date": "2026-11-11",
+      "licence": "Licence Ouverte / Open Licence v2.0 ('Etalab')",
+      "geography": "FR (France consumption mix for food products; France farm gate for agriculture)",
+      "reference_year": "2024 (v3.2 calculations; background Ecoinvent 3.9.1, WFLDB 3.5, CIQUAL 2020)",
+      "functional_unit": "1 kg of food product consumed at the consumer (food workbook); 1 kg of agricultural product at farm gate (agriculture workbooks)",
+      "system_boundary": "Cradle-to-grave / field-to-plate across 6 stages (Agriculture, Transformation, Emballage, Transport, Supermarch\u00e9 et distribution, Consommation) for food products; cradle-to-farm-gate for agricultural products",
+      "lcia_method": "EF 3.1 adapted for SimaPro v1.00 (EF 3.1 normalization/weighting single score mPt + 16 midpoint indicators + 3 climate sub-indicators; long-term emissions included)",
+      "file_path": "data/raw/agribalyse_3_2/",
+      "file_count": 15,
+      "total_size_bytes": 109928924,
+      "sha256_checksum": "fe12c0a18e614fb45eb3201205cc9d2eb25d61ef5c8777699bff2e3721ddd421",
+      "identification_confidence": "high",
+      "data_type": "published-reference (LCIA spreadsheet tables + methodology PDFs/annexes)",
+      "intended_use": "Finished dairy product LCA reference benchmarks, stage contribution analysis (including embedded Emballage stage), raw milk farm-gate comparison, and cheese yield/density reference",
+      "limitations": "Product-level food impacts already embed a fixed baseline packaging ('PACK AGB' or 'PACK PROXY') and consumer losses; cannot be used as a free-form packaging BOM engine without subtracting or holding constant the embedded Emballage stage; 7 duplicate Code AGB rows exist for packaging fixes; Egg and Quinoa FR errors flagged in Notice",
+      "derived_tables": [
+        "agribalyse_dairy_products",
+        "agribalyse_farm_gate_dairy",
+        "packaging_impact_factors",
+        "simulated_packaging_scenarios"
+      ],
+      "selection_rationale": {
+        "verified_intended_use": "Finished dairy product LCA reference benchmarks, stage contribution analysis (including embedded Emballage stage), raw milk farm-gate comparison, and cheese yield/density reference",
+        "alternatives_considered": "Not recorded / Unknown"
+      }
+    },
+    {
+      "dataset_id": "pdo_cheese_lca",
+      "title": "French PDO Cheeses LCI, LCIA and Process Characterization Dataset (44 PDO Cheeses)",
+      "provider": "French PDO Cheese LCA Research Authors (INRAE / Institut Agro / Actalia Dataverse deposit)",
+      "version": "2022 deposit (workbooks modified 2022-04-04 to 2022-08-25; PDO specs accessed Sep/Nov 2020)",
+      "url": "not_embedded_in_raw_files (Dataverse bundle with MANIFEST.TXT; INAO spec URLs in specifications workbook)",
+      "download_date": "2026-11-11",
+      "licence": "not_embedded_in_raw_files (verify Dataverse landing page licence before external redistribution)",
+      "geography": "FR (44 French Protected Designation of Origin cheese supply chains; Ecoinvent 3 FR/RER/GLO & AGRIBALYSE 3.0 FR)",
+      "reference_year": "2020-2022 (PDO specifications accessed 2020; workbooks modified 2022; AGRIBALYSE 3.0 milk)",
+      "functional_unit": "1 kg of ripened cheese (FU = 1kg of cheese)",
+      "system_boundary": "Cradle-to-ripened-cheese factory/shared-cellar exit gate across 7 base stages (Milk production, Milk transport, Milk pumping, Milk storage, Milk processing, Cheese ripening, Equipment cleaning) plus Cheese transport in Alternative scenario; excludes packaging, retail and consumer stages",
+      "lcia_method": "EF 3.0 / ILCD-compatible 28-indicator midpoint suite (16 main categories + 3 climate sub-indicators + 9 toxicity/ecotoxicity chemical-group sub-indicators; no single score)",
+      "file_path": "data/raw/pdo_cheese_lca/",
+      "file_count": 9,
+      "total_size_bytes": 382857,
+      "sha256_checksum": "4b201a8b56e11e1df1b3dfb7da5fa99d0ff982e80d4e9e8998c26c92a4cebdc8",
+      "identification_confidence": "medium",
+      "data_type": "published-reference (cheese-level LCI/LCIA and characterization workbooks)",
+      "intended_use": "Cheese manufacturing process LCI/LCIA reference, co-product allocation study, and exploratory 44-cheese case study grouped strictly by cheese entity",
+      "limitations": "Small specialized sample (44 cheeses); LCIA sheet has 1,232 cheese x indicator rows (28 per cheese) which are NOT independent observations; excludes packaging; data_PDOcheeses_LCI lacks .xlsx extension and labels ripening wood as m3 in Initial scenario vs kg in Additional scenario; trailing whitespace and 'Camenbert'/'Camembert' spelling mismatch across tables; no DOI/licence embedded in files",
+      "derived_tables": [
+        "pdo_cheese_harmonized"
+      ],
+      "selection_rationale": {
+        "verified_intended_use": "Cheese manufacturing process LCI/LCIA reference, co-product allocation study, and exploratory 44-cheese case study grouped strictly by cheese entity",
+        "alternatives_considered": "Not recorded / Unknown"
+      }
+    },
+    {
+      "dataset_id": "uslci",
+      "title": "U.S. Life Cycle Inventory (USLCI) Database (openLCA JSON-LD Export)",
+      "provider": "National Renewable Energy Laboratory (NREL) / Federal LCA Commons",
+      "version": "openLCA JSON-LD schemaVersion 3 (repositoryClientVersion 6, repositoryServerVersion 5; 2026-09-30 export)",
+      "url": "https://www.lcacommons.gov/lca-collaboration/National_Renewable_Energy_Laboratory/USLCI_Database",
+      "download_date": "2026-11-11",
+      "licence": "USLCI Public Use / Federal LCA Commons Open Terms (free public use with citation)",
+      "geography": "US / Northern America primary (730 US, 182 Northern America, 96 Global, 391 unspecified/regional variants)",
+      "reference_year": "1990-2025 (virgin polyolefins 2014-2016, PET/PVC 2022, rPET/rHDPE/rPP 2016, containerboard 2013-2014, trucking 2024)",
+      "functional_unit": "Process-specific quantitative reference flow (primarily 1 kg, 1000 kg, 1.10516007 kg, 13.5 kg, 1 Mg, 1 sh tn = 907.18474 kg, 1 t*km, 1 m3, 1 l, 1 MJ, or 1 kWh)",
+      "system_boundary": "Gate-to-gate unit processes (1,408 UNIT_PROCESS) and cradle-to-gate aggregated processes (26 LCI_RESULT)",
+      "lcia_method": "None bundled in export (0 lcia_methods in JSON-LD; requires external TRACI/IPCC/EF characterization factors)",
+      "file_path": "data/raw/uslci/",
+      "file_count": 8070,
+      "total_size_bytes": 133045311,
+      "sha256_checksum": "29fdd16b136263ee08ef23559d3628ccd386d5c047a2259fc3d87d72699f93a5",
+      "identification_confidence": "high",
+      "data_type": "published-reference (unit-process and LCI-result inventory flows)",
+      "intended_use": "Packaging material, conversion, recycled resin, fuel combustion, freight transport and end-of-life inventory reference for BOM-based packaging and logistics modelling",
+      "limitations": "No bundled LCIA characterization methods; 97 Bridge Processes (including all 27 US Electricity Baseline bridges and 55 USEEIO bridges such as Flat glass Bridge) have 0 elementary flows and unlinked upstream inputs (2,171 of 6,833 product-flow inputs lack an internal provider in this standalone export); no container glass or liquid packaging board (LPB) process; non-uniform reference units (sh tn, Mg, 1000 kg); no cost or price data",
+      "derived_tables": [
+        "uslci_curated_factors",
+        "packaging_impact_factors"
+      ],
+      "selection_rationale": {
+        "verified_intended_use": "Packaging material, conversion, recycled resin, fuel combustion, freight transport and end-of-life inventory reference for BOM-based packaging and logistics modelling",
+        "alternatives_considered": "Not recorded / Unknown"
+      }
+    },
+    {
+      "dataset_id": "anl_nist_regional_plastics_2024",
+      "title": "Life-Cycle Analysis Datasets for Regionalized Plastic Pathways (ANL/ESIA-24/3)",
+      "provider": "Argonne National Laboratory (ANL) and National Institute of Standards and Technology (NIST)",
+      "version": "ANL/ESIA-24/3 (February 2024)",
+      "url": "https://www.osti.gov/ (Report ANL/ESIA-24/3)",
+      "download_date": "2026-11-11",
+      "licence": "U.S. Government / DOE OSTI Public Technical Report",
+      "geography": "USA, Western Europe, MENA (Middle East and North Africa), China, and 4-region Cross-regional average",
+      "reference_year": "2024 report (GREET 2022 model; 2020 IEA electricity/NG data; 2010-2016 baseline technology shares with 2019-2022 sensitivity)",
+      "functional_unit": "1 kg of virgin plastic resin (PET, HDPE, LDPE, PP, PVC) or 1 kg of olefin monomer (ethylene, propylene); also 1 kWh electricity and 1 MJ natural gas in Figure 18",
+      "system_boundary": "Cradle-to-gate virgin resin / monomer production (raw material extraction through monomer and polymerization at plant gate; excludes package conversion, transport to dairy, filling and end-of-life)",
+      "lcia_method": "GREET 2022 100-year GHG Carbon Intensity (kg CO2e / kg, covering CO2, CH4, N2O)",
+      "file_path": "data/raw/[2024  Taemin Kim] Life-Cycle Analysis Datasets for Regionalized Plastic Pathways.pdf.pdf",
+      "file_count": 1,
+      "total_size_bytes": 1587678,
+      "sha256_checksum": "db42a209799c6212f52ff73cb0d144752201eaf02dd12c96c49d64a61702760c",
+      "identification_confidence": "high",
+      "data_type": "published-reference (PDF report tables and figure values)",
+      "intended_use": "Regionalized cradle-to-gate carbon intensity factors for virgin PET, HDPE, LDPE, PP and PVC resins and sensitivity to monomer/feedstock pathways and regional electricity grids",
+      "limitations": "Cradle-to-gate virgin resin only (not a complete package LCA; excludes blow molding/thermoforming and EoL); MENA is a macro-regional proxy, not Uzbekistan; covers GHG carbon intensity only (no water/eutrophication); prose on p. 28 misstates USA PTA-based PET CI as 1.92 (China's value) whereas Table 5 shows 1.75; filename has double .pdf.pdf suffix",
+      "derived_tables": [
+        "packaging_impact_factors",
+        "nist_plastic_carbon_intensity"
+      ],
+      "selection_rationale": {
+        "verified_intended_use": "Regionalized cradle-to-gate carbon intensity factors for virgin PET, HDPE, LDPE, PP and PVC resins and sensitivity to monomer/feedstock pathways and regional electricity grids",
+        "alternatives_considered": "Not recorded / Unknown"
+      }
+    },
+    {
+      "dataset_id": "ifc_wbg_ehs_dairy_2007",
+      "title": "Environmental, Health, and Safety (EHS) Guidelines for Dairy Processing",
+      "provider": "International Finance Corporation (IFC) / World Bank Group (citing Nordic Council of Ministers 2001 & EDA 2002 / EC 2006)",
+      "version": "April 30, 2007",
+      "url": "https://www.ifc.org/ehsguidelines (111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf)",
+      "download_date": "2026-11-11",
+      "licence": "World Bank Group / IFC Public EHS Guideline Terms",
+      "geography": "International guideline; Table 2-3 benchmarks from European, Swedish, Danish, Finnish and Norwegian dairies",
+      "reference_year": "2007 publication (underlying plant survey benchmarks from 2001-2002 / EC 2006 BREF)",
+      "functional_unit": "Per unit of processed milk or product: L/L processed milk, kWh/L processed milk, Liters/L processed milk, kg/1000 l (solid waste), L/kg ice cream, KWh/kg ice cream; mg/l, pH, degC, MPN/100 ml for effluent guidelines",
+      "system_boundary": "Gate-to-gate dairy processing facility operations (milk reception, processing, CIP cleaning, utilities, wastewater discharge and solid waste; excludes raw milk farming and upstream packaging manufacture)",
+      "lcia_method": "Operational intensity benchmarks and regulatory/guideline effluent concentration limits (not LCIA)",
+      "file_path": "data/raw/111927-WP-ENGLISH-Dairy-Processing-PUBLIC.pdf",
+      "file_count": 1,
+      "total_size_bytes": 225369,
+      "sha256_checksum": "90c5963f47291ec64876e62555aebe9959d9eb0f2f0a10fb215cd6c119b257e5",
+      "identification_confidence": "high",
+      "data_type": "published-reference (historical industry benchmark ranges and EHS effluent guidelines)",
+      "intended_use": "Sanity-check bounds and default proxy ranges for dairy plant water intake, energy consumption, wastewater discharge, solid waste generation and effluent pollutant limits; template for company data collection",
+      "limitations": "Published in 2007 from 2001-2002 European/Nordic dairy surveys (not current Uzbekistan plant data or regulation); values are wide plant-level ranges, not independent ML training observations; Ice cream energy cell (0.75-1.6 KWh/kg) spans all four Nordic country columns as a single merged cell",
+      "derived_tables": [
+        "ifc_dairy_benchmarks"
+      ],
+      "selection_rationale": {
+        "verified_intended_use": "Sanity-check bounds and default proxy ranges for dairy plant water intake, energy consumption, wastewater discharge, solid waste generation and effluent pollutant limits; template for company data collection",
+        "alternatives_considered": "Not recorded / Unknown"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "table": "agribalyse_dairy_products",
+      "file": "data/processed/agribalyse_dairy_products.csv",
+      "rows": 277,
+      "columns": 51,
+      "sha256": "eb5d6f85f0dfb008ccad2b12848c5bc036d32468bc4e2677a877a286ed859eb0",
+      "missing_cells": 438,
+      "columns_with_missing": {
+        "airplane_transport_flag": 277,
+        "milk_yield_kg_milk_per_kg_product": 161
+      },
+      "duplicate_rows": 0,
+      "raw_sources": [
+        "agribalyse_3_2"
+      ],
+      "built_by": {
+        "file": "src/dairyeco/data/harmonize.py",
+        "symbol": "build_agribalyse_dairy_table"
+      },
+      "built_by_verified": true,
+      "consumers": [
+        {
+          "file": "src/dairyeco/cli.py",
+          "function": "_cmd_status"
+        },
+        {
+          "file": "src/dairyeco/models/pipeline.py",
+          "function": "run_task1_agribalyse_dairy_regression"
+        },
+        {
+          "file": "src/dairyeco/models/pipeline.py",
+          "function": "_write_model_cards_report"
+        },
+        {
+          "file": "src/dairyeco/models/registry.py",
+          "function": "(module level)"
+        },
+        {
+          "file": "src/dairyeco/services/reporting.py",
+          "function": "_load_dairy_products_cached"
+        }
+      ],
+      "functional_unit": {
+        "1 kg of food product consumed at consumer": 277
+      },
+      "system_boundary": {
+        "Cradle-to-grave (Field to Plate; non_packaging columns subtract Emballage stage)": 277
+      },
+      "lcia_method": {
+        "EF 3.1 (adapted) V1.00": 277
+      },
+      "geography": {
+        "FR": 277
+      },
+      "reference_year": {
+        "2024/2025": 277
+      },
+      "source_type": {
+        "published_reference": 277
+      },
+      "source_dataset_id": {
+        "agribalyse_3_2": 277
+      }
+    },
+    {
+      "table": "agribalyse_farm_gate_dairy",
+      "file": "data/processed/agribalyse_farm_gate_dairy.csv",
+      "rows": 14,
+      "columns": 24,
+      "sha256": "999addc9297e15fea7af064e5dd4545cbef3a5cb91276cba295cdadc3dadaee7",
+      "missing_cells": 0,
+      "columns_with_missing": {},
+      "duplicate_rows": 0,
+      "raw_sources": [
+        "agribalyse_3_2"
+      ],
+      "built_by": {
+        "file": "src/dairyeco/data/harmonize.py",
+        "symbol": "build_agribalyse_farm_gate_table"
+      },
+      "built_by_verified": true,
+      "consumers": [
+        {
+          "file": "src/dairyeco/cli.py",
+          "function": "_cmd_status"
+        }
+      ],
+      "functional_unit": {
+        "1 kg of agricultural product leaving farm gate": 14
+      },
+      "system_boundary": {
+        "Cradle-to-farm-gate": 14
+      },
+      "lcia_method": {
+        "EF 3.1 (adapted) V1.00": 14
+      },
+      "geography": {
+        "FR": 14
+      },
+      "reference_year": {
+        "2024/2025": 8,
+        "2024": 6
+      },
+      "source_type": {
+        "published_reference": 14
+      },
+      "source_dataset_id": {
+        "agribalyse_3_2": 14
+      }
+    },
+    {
+      "table": "pdo_cheese_harmonized",
+      "file": "data/processed/pdo_cheese_harmonized.csv",
+      "rows": 44,
+      "columns": 62,
+      "sha256": "f638c58ed27d563aac4ff7ceebf6c15d7d4a189afeef8a0912cf7a6885644bf3",
+      "missing_cells": 0,
+      "columns_with_missing": {},
+      "duplicate_rows": 0,
+      "raw_sources": [
+        "pdo_cheese_lca"
+      ],
+      "built_by": {
+        "file": "src/dairyeco/data/harmonize.py",
+        "symbol": "build_pdo_cheese_harmonized_table"
+      },
+      "built_by_verified": true,
+      "consumers": [
+        {
+          "file": "src/dairyeco/cli.py",
+          "function": "_cmd_status"
+        },
+        {
+          "file": "src/dairyeco/models/pipeline.py",
+          "function": "run_task2_pdo_cheese_case_study"
+        },
+        {
+          "file": "src/dairyeco/models/pipeline.py",
+          "function": "_write_model_cards_report"
+        },
+        {
+          "file": "src/dairyeco/models/registry.py",
+          "function": "(module level)"
+        }
+      ],
+      "functional_unit": {
+        "1 kg of ripened PDO cheese (packaging excluded)": 44
+      },
+      "system_boundary": {
+        "Cradle-to-ripening-exit (excludes packaging, retail, consumer)": 44
+      },
+      "lcia_method": {
+        "EF 3.0 / ILCD Midpoint (28 indicators)": 44
+      },
+      "geography": {
+        "FR": 44
+      },
+      "reference_year": {
+        "2020/2022": 44
+      },
+      "source_type": {
+        "published_reference": 44
+      },
+      "source_dataset_id": {
+        "pdo_cheese_lca": 44
+      }
+    },
+    {
+      "table": "uslci_curated_factors",
+      "file": "data/processed/uslci_curated_factors.csv",
+      "rows": 56,
+      "columns": 20,
+      "sha256": "01c187a14752e0d1865b5586788909b51a632a48a9801d7182e4960ed87bc523",
+      "missing_cells": 3,
+      "columns_with_missing": {
+        "valid_from": 3
+      },
+      "duplicate_rows": 0,
+      "raw_sources": [
+        "uslci"
+      ],
+      "built_by": {
+        "file": "src/dairyeco/data/harmonize.py",
+        "symbol": "build_uslci_curated_table"
+      },
+      "built_by_verified": true,
+      "consumers": [
+        {
+          "file": "src/dairyeco/cli.py",
+          "function": "_cmd_status"
+        }
+      ],
+      "geography": {
+        "United States of America (the)": 31,
+        "Northern America": 21,
+        "unspecified": 3,
+        "China": 1
+      },
+      "source_type": {
+        "published_reference": 56
+      },
+      "source_dataset_id": {
+        "uslci": 56
+      }
+    },
+    {
+      "table": "packaging_impact_factors",
+      "file": "data/processed/packaging_impact_factors.csv",
+      "rows": 65,
+      "columns": 20,
+      "sha256": "cd31ebaa0484571468beb236e7bdafa7509aa0d7fc00b1521638044459d6f478",
+      "missing_cells": 0,
+      "columns_with_missing": {},
+      "duplicate_rows": 0,
+      "raw_sources": [
+        "uslci",
+        "anl_nist_regional_plastics_2024",
+        "agribalyse_3_2"
+      ],
+      "built_by": {
+        "file": "src/dairyeco/data/harmonize.py",
+        "symbol": "build_unified_packaging_impact_factors"
+      },
+      "built_by_verified": true,
+      "consumers": [
+        {
+          "file": "src/dairyeco/cli.py",
+          "function": "_cmd_status"
+        },
+        {
+          "file": "src/dairyeco/lca/engine.py",
+          "function": "get_default_factor_catalog"
+        },
+        {
+          "file": "src/dairyeco/lca/engine.py",
+          "function": "__init__"
+        }
+      ],
+      "functional_unit": {
+        "1 kg of converted package component": 9,
+        "1 kg of packaging waste entering EoL route": 7,
+        "1 kg of virgin PET resin at plant gate": 5,
+        "1 kg of virgin HDPE resin at plant gate": 5,
+        "1 kg of virgin LDPE resin at plant gate": 5,
+        "1 kg of virgin PP resin at plant gate": 5,
+        "1 kg of virgin PVC resin at plant gate": 5,
+        "1 metric ton-km of freight transport": 4
+      },
+      "system_boundary": {
+        "Cradle-to-gate virgin resin production (GREET 2022)": 25,
+        "Cradle-to-gate material production": 10,
+        "Gate-to-gate converting process": 9,
+        "Waste collection, sorting/combustion/landfilling (cut-off approach)": 7,
+        "Cradle-to-gate proxy (standalone USLCI unit process lacks upstream links)": 5,
+        "Collection, sorting, washing, and pelletization (cut-off allocation proxy)": 5,
+        "Gate-to-gate vehicle operation + fuel combustion": 4
+      },
+      "lcia_method": {
+        "GREET 2022/2023 GWP100": 25,
+        "IPCC AR6 GWP100": 11,
+        "IPCC GWP100 / EF 3.1": 10,
+        "IPCC GWP100 + grid electricity": 9,
+        "IPCC AR6 GWP100 + literature roll-up proxy": 5,
+        "IPCC AR6 GWP100 + regional electricity proxy": 5
+      },
+      "geography": {
+        "US/RNA": 12,
+        "Northern America": 10,
+        "FR/EU": 7,
+        "RNA": 7,
+        "Cross-regional average": 5,
+        "USA": 5,
+        "Western Europe": 5,
+        "MENA": 5
+      },
+      "reference_year": {
+        "2024": 25,
+        "2018": 11,
+        "2022/2024": 10,
+        "2020/2024": 9,
+        "2016": 5,
+        "2014": 2,
+        "2015": 2,
+        "2007": 1
+      },
+      "source_type": {
+        "published_reference": 38,
+        "proxy": 27
+      },
+      "source_dataset_id": {
+        "uslci": 30,
+        "anl_nist_regional_plastics_2024": 25,
+        "agribalyse_3_2": 7,
+        "uslci_proxy": 3
+      }
+    },
+    {
+      "table": "nist_plastic_carbon_intensity",
+      "file": "data/reference/nist_plastic_carbon_intensity.csv",
+      "rows": 67,
+      "columns": 25,
+      "sha256": "afe055a84404647c4f8be566100589008a64f402410113e9c5f01480e41139e3",
+      "missing_cells": 74,
+      "columns_with_missing": {
+        "deviation_from_cross_regional_avg_pct": 32,
+        "rank_in_table1": 42
+      },
+      "duplicate_rows": 0,
+      "raw_sources": [
+        "anl_nist_regional_plastics_2024"
+      ],
+      "built_by": {
+        "file": "src/dairyeco/data/pdf_extraction.py",
+        "symbol": ""
+      },
+      "built_by_verified": false,
+      "consumers": [
+        {
+          "file": "src/dairyeco/data/harmonize.py",
+          "function": "build_unified_packaging_impact_factors"
+        },
+        {
+          "file": "src/dairyeco/data/pdf_extraction.py",
+          "function": "extract_nist_tables"
+        }
+      ],
+      "functional_unit": {
+        "1 kg of PET at plant gate": 8,
+        "1 kg of Ethylene and propylene at plant gate": 8,
+        "1 kg of Propylene at plant gate": 8,
+        "1 kg of PVC at plant gate": 8,
+        "1 kg of virgin PET resin at plant gate": 5,
+        "1 kg of virgin HDPE resin at plant gate": 5,
+        "1 kg of virgin LDPE resin at plant gate": 5,
+        "1 kg of virgin PP resin at plant gate": 5
+      },
+      "system_boundary": {
+        "Cradle-to-gate dedicated technology/feedstock pathway (GREET 2022)": 32,
+        "Cradle-to-gate virgin resin production (GREET 2022)": 25,
+        "Cradle-to-gate regional energy supply (IEA 2020 / GREET 2022)": 10
+      },
+      "source_dataset_id": {
+        "anl_nist_regional_plastics_2024": 67
+      }
+    },
+    {
+      "table": "ifc_dairy_benchmarks",
+      "file": "data/reference/ifc_dairy_benchmarks.csv",
+      "rows": 69,
+      "columns": 28,
+      "sha256": "96d5fbb170297321a3f6444cae2a330b00e77d780060c52244b29b0c6548d224",
+      "missing_cells": 142,
+      "columns_with_missing": {
+        "min_value": 3,
+        "max_value": 2,
+        "single_value": 55,
+        "sample_size_dairies": 66,
+        "footnote_key": 8,
+        "footnote_text": 8
+      },
+      "duplicate_rows": 0,
+      "raw_sources": [
+        "ifc_wbg_ehs_dairy_2007"
+      ],
+      "built_by": {
+        "file": "src/dairyeco/data/pdf_extraction.py",
+        "symbol": ""
+      },
+      "built_by_verified": false,
+      "consumers": [
+        {
+          "file": "src/dairyeco/data/pdf_extraction.py",
+          "function": "extract_ifc_tables"
+        },
+        {
+          "file": "src/dairyeco/lca/engine.py",
+          "function": "load_ifc_plant_benchmarks"
+        }
+      ],
+      "system_boundary": {
+        "Gate-to-gate dairy processing plant utility consumption / wastewater discharge": 56,
+        "Gate-to-gate dairy processing plant direct discharge to surface water": 10,
+        "Gate-to-gate dairy processing plant solid waste generation": 3
+      },
+      "source_dataset_id": {
+        "ifc_wbg_ehs_dairy_2007": 69
+      }
+    },
+    {
+      "table": "simulated_packaging_scenarios",
+      "file": "data/synthetic/simulated_packaging_scenarios.csv",
+      "rows": 1200,
+      "columns": 27,
+      "sha256": "cbe1755aa955a282faf4e98feeca072090f1897597a8ed47d6b7f2c6a96714c1",
+      "missing_cells": 0,
+      "columns_with_missing": {},
+      "duplicate_rows": 0,
+      "raw_sources": [
+        "agribalyse_3_2",
+        "packaging_impact_factors (via LCA engine)"
+      ],
+      "built_by": {
+        "file": "src/dairyeco/models/pipeline.py",
+        "symbol": "generate_simulated_scenario_dataset"
+      },
+      "built_by_verified": true,
+      "consumers": [
+        {
+          "file": "src/dairyeco/dashboard/audit_lab.py",
+          "function": "_trace_to_source"
+        },
+        {
+          "file": "src/dairyeco/models/pipeline.py",
+          "function": "generate_simulated_scenario_dataset"
+        },
+        {
+          "file": "src/dairyeco/models/pipeline.py",
+          "function": "_write_model_cards_report"
+        },
+        {
+          "file": "src/dairyeco/models/registry.py",
+          "function": "(module level)"
+        }
+      ],
+      "source_type": {
+        "model_derived": 1200
+      }
+    }
+  ],
+  "selection_note": "Alternatives considered / rejected: Not recorded / Unknown. The project artifacts record the selected sources and gaps (e.g. USLCI lacks container glass and liquid packaging board, filled by labelled proxies) but no explicit candidate-dataset comparison.",
+  "unused_tables": []
+}

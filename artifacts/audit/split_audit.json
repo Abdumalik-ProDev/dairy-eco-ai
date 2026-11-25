@@ -1,0 +1,552 @@
+{
+  "task3a_surrogate_gwp": {
+    "task_key": "task3a_surrogate_gwp",
+    "n_rows": 1200,
+    "n_dev_rows": 961,
+    "n_holdout_rows": 239,
+    "n_features": 21,
+    "seed": 42,
+    "split_method": "20% Group Holdout + GroupKFold(n_splits=5) grouped by product_id on dev split",
+    "fold_sizes": [
+      {
+        "fold": 1,
+        "train": 768,
+        "validation": 193
+      },
+      {
+        "fold": 2,
+        "train": 769,
+        "validation": 192
+      },
+      {
+        "fold": 3,
+        "train": 769,
+        "validation": 192
+      },
+      {
+        "fold": 4,
+        "train": 769,
+        "validation": 192
+      },
+      {
+        "fold": 5,
+        "train": 769,
+        "validation": 192
+      }
+    ],
+    "validation_fraction": 0.2,
+    "checks": [
+      {
+        "id": "split_integrity",
+        "name": "Train/validation indices never overlap",
+        "status": "pass",
+        "evidence": "0 overlapping indices across 5 folds",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "full_coverage",
+        "name": "Every record is validated exactly once (OOF)",
+        "status": "pass",
+        "evidence": "min/max validation count per record = 1/1",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "entity_unique",
+        "name": "One record per entity (product_id)",
+        "status": "warn",
+        "evidence": "254 unique 'product_id' values in 1200 rows",
+        "code_ref": "data/harmonize.py"
+      },
+      {
+        "id": "group_leakage",
+        "name": "No group (product) shared between train and validation",
+        "status": "pass",
+        "evidence": "0 shared product_id across folds",
+        "code_ref": "models/pipeline.py::run_task3_simulator_surrogate"
+      },
+      {
+        "id": "duplicate_feature_vectors",
+        "name": "Identical feature vectors across train/validation",
+        "status": "pass",
+        "evidence": "0 validation rows have an exact feature-vector twin in their training fold",
+        "code_ref": "models/pipeline.py"
+      },
+      {
+        "id": "target_leakage",
+        "name": "Forbidden/target columns absent from features",
+        "status": "pass",
+        "evidence": "21 features checked against 42 forbidden columns and the target",
+        "code_ref": "models/pipeline.py::assert_no_feature_leakage"
+      },
+      {
+        "id": "preprocessing_in_fold",
+        "name": "Imputer/scaler/encoder fitted on training fold only",
+        "status": "pass",
+        "evidence": "fold pipeline cloned and fitted on X_tr each fold: True; production artifact first step is 'prep': True",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "temporal_leakage",
+        "name": "Temporal ordering",
+        "status": "na",
+        "evidence": "Records carry no observation timestamp (static LCA reference values); a temporal split is not defined for this data",
+        "code_ref": "-"
+      },
+      {
+        "id": "selection_on_oof",
+        "name": "Model-family selection uses the same OOF scores that are reported",
+        "status": "warn",
+        "evidence": "Champion = argmin penalised OOF MAE among candidates; inner GridSearchCV is nested, but the final OOF numbers are also the selection criterion (optimistic bias possible)",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "independent_holdout",
+        "name": "Untouched final test set",
+        "status": "pass",
+        "evidence": "239 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      }
+    ],
+    "dataset_file": "data/synthetic/simulated_packaging_scenarios.csv"
+  },
+  "task3b_surrogate_cost": {
+    "task_key": "task3b_surrogate_cost",
+    "n_rows": 1200,
+    "n_dev_rows": 961,
+    "n_holdout_rows": 239,
+    "n_features": 21,
+    "seed": 42,
+    "split_method": "20% Group Holdout + GroupKFold(n_splits=5) grouped by product_id on dev split",
+    "fold_sizes": [
+      {
+        "fold": 1,
+        "train": 768,
+        "validation": 193
+      },
+      {
+        "fold": 2,
+        "train": 769,
+        "validation": 192
+      },
+      {
+        "fold": 3,
+        "train": 769,
+        "validation": 192
+      },
+      {
+        "fold": 4,
+        "train": 769,
+        "validation": 192
+      },
+      {
+        "fold": 5,
+        "train": 769,
+        "validation": 192
+      }
+    ],
+    "validation_fraction": 0.2,
+    "checks": [
+      {
+        "id": "split_integrity",
+        "name": "Train/validation indices never overlap",
+        "status": "pass",
+        "evidence": "0 overlapping indices across 5 folds",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "full_coverage",
+        "name": "Every record is validated exactly once (OOF)",
+        "status": "pass",
+        "evidence": "min/max validation count per record = 1/1",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "entity_unique",
+        "name": "One record per entity (product_id)",
+        "status": "warn",
+        "evidence": "254 unique 'product_id' values in 1200 rows",
+        "code_ref": "data/harmonize.py"
+      },
+      {
+        "id": "group_leakage",
+        "name": "No group (product) shared between train and validation",
+        "status": "pass",
+        "evidence": "0 shared product_id across folds",
+        "code_ref": "models/pipeline.py::run_task3_simulator_surrogate"
+      },
+      {
+        "id": "duplicate_feature_vectors",
+        "name": "Identical feature vectors across train/validation",
+        "status": "pass",
+        "evidence": "0 validation rows have an exact feature-vector twin in their training fold",
+        "code_ref": "models/pipeline.py"
+      },
+      {
+        "id": "target_leakage",
+        "name": "Forbidden/target columns absent from features",
+        "status": "pass",
+        "evidence": "21 features checked against 42 forbidden columns and the target",
+        "code_ref": "models/pipeline.py::assert_no_feature_leakage"
+      },
+      {
+        "id": "preprocessing_in_fold",
+        "name": "Imputer/scaler/encoder fitted on training fold only",
+        "status": "pass",
+        "evidence": "fold pipeline cloned and fitted on X_tr each fold: True; production artifact first step is 'prep': True",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "temporal_leakage",
+        "name": "Temporal ordering",
+        "status": "na",
+        "evidence": "Records carry no observation timestamp (static LCA reference values); a temporal split is not defined for this data",
+        "code_ref": "-"
+      },
+      {
+        "id": "selection_on_oof",
+        "name": "Model-family selection uses the same OOF scores that are reported",
+        "status": "warn",
+        "evidence": "Champion = argmin penalised OOF MAE among candidates; inner GridSearchCV is nested, but the final OOF numbers are also the selection criterion (optimistic bias possible)",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "independent_holdout",
+        "name": "Untouched final test set",
+        "status": "pass",
+        "evidence": "239 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      }
+    ],
+    "dataset_file": "data/synthetic/simulated_packaging_scenarios.csv"
+  },
+  "task1_agribalyse_gwp": {
+    "task_key": "task1_agribalyse_gwp",
+    "n_rows": 255,
+    "n_dev_rows": 204,
+    "n_holdout_rows": 51,
+    "n_features": 7,
+    "seed": 42,
+    "split_method": "20% Stratified Holdout + StratifiedKFold(n_splits=5) on dev split",
+    "fold_sizes": [
+      {
+        "fold": 1,
+        "train": 163,
+        "validation": 41
+      },
+      {
+        "fold": 2,
+        "train": 163,
+        "validation": 41
+      },
+      {
+        "fold": 3,
+        "train": 163,
+        "validation": 41
+      },
+      {
+        "fold": 4,
+        "train": 163,
+        "validation": 41
+      },
+      {
+        "fold": 5,
+        "train": 164,
+        "validation": 40
+      }
+    ],
+    "validation_fraction": 0.2,
+    "checks": [
+      {
+        "id": "split_integrity",
+        "name": "Train/validation indices never overlap",
+        "status": "pass",
+        "evidence": "0 overlapping indices across 5 folds",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "full_coverage",
+        "name": "Every record is validated exactly once (OOF)",
+        "status": "pass",
+        "evidence": "min/max validation count per record = 1/1",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "entity_unique",
+        "name": "One record per entity (product_id)",
+        "status": "pass",
+        "evidence": "255 unique 'product_id' values in 255 rows",
+        "code_ref": "data/harmonize.py"
+      },
+      {
+        "id": "group_leakage",
+        "name": "No group (product) shared between train and validation",
+        "status": "na",
+        "evidence": "Each row is its own entity (255 products / 44 cheeses); no repeated groups exist",
+        "code_ref": "models/pipeline.py::run_task3_simulator_surrogate"
+      },
+      {
+        "id": "duplicate_feature_vectors",
+        "name": "Identical feature vectors across train/validation",
+        "status": "warn",
+        "evidence": "76 validation rows have an exact feature-vector twin in their training fold",
+        "code_ref": "models/pipeline.py"
+      },
+      {
+        "id": "target_leakage",
+        "name": "Forbidden/target columns absent from features",
+        "status": "pass",
+        "evidence": "7 features checked against 42 forbidden columns and the target",
+        "code_ref": "models/pipeline.py::assert_no_feature_leakage"
+      },
+      {
+        "id": "preprocessing_in_fold",
+        "name": "Imputer/scaler/encoder fitted on training fold only",
+        "status": "pass",
+        "evidence": "fold pipeline cloned and fitted on X_tr each fold: True; production artifact first step is 'prep': True",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "temporal_leakage",
+        "name": "Temporal ordering",
+        "status": "na",
+        "evidence": "Records carry no observation timestamp (static LCA reference values); a temporal split is not defined for this data",
+        "code_ref": "-"
+      },
+      {
+        "id": "selection_on_oof",
+        "name": "Model-family selection uses the same OOF scores that are reported",
+        "status": "warn",
+        "evidence": "Champion = argmin penalised OOF MAE among candidates; inner GridSearchCV is nested, but the final OOF numbers are also the selection criterion (optimistic bias possible)",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "independent_holdout",
+        "name": "Untouched final test set",
+        "status": "pass",
+        "evidence": "51 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      }
+    ],
+    "dataset_file": "data/processed/agribalyse_dairy_products.csv"
+  },
+  "task2a_pdo_cheese_total": {
+    "task_key": "task2a_pdo_cheese_total",
+    "n_rows": 44,
+    "n_dev_rows": 35,
+    "n_holdout_rows": 9,
+    "n_features": 14,
+    "seed": 42,
+    "split_method": "20% Stratified Holdout + StratifiedKFold(n_splits=5) by target quartile on dev split",
+    "fold_sizes": [
+      {
+        "fold": 1,
+        "train": 28,
+        "validation": 7
+      },
+      {
+        "fold": 2,
+        "train": 28,
+        "validation": 7
+      },
+      {
+        "fold": 3,
+        "train": 28,
+        "validation": 7
+      },
+      {
+        "fold": 4,
+        "train": 28,
+        "validation": 7
+      },
+      {
+        "fold": 5,
+        "train": 28,
+        "validation": 7
+      }
+    ],
+    "validation_fraction": 0.2,
+    "checks": [
+      {
+        "id": "split_integrity",
+        "name": "Train/validation indices never overlap",
+        "status": "pass",
+        "evidence": "0 overlapping indices across 5 folds",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "full_coverage",
+        "name": "Every record is validated exactly once (OOF)",
+        "status": "pass",
+        "evidence": "min/max validation count per record = 1/1",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "entity_unique",
+        "name": "One record per entity (pdo_cheese_id)",
+        "status": "pass",
+        "evidence": "44 unique 'pdo_cheese_id' values in 44 rows",
+        "code_ref": "data/harmonize.py"
+      },
+      {
+        "id": "group_leakage",
+        "name": "No group (product) shared between train and validation",
+        "status": "na",
+        "evidence": "Each row is its own entity (255 products / 44 cheeses); no repeated groups exist",
+        "code_ref": "models/pipeline.py::run_task3_simulator_surrogate"
+      },
+      {
+        "id": "duplicate_feature_vectors",
+        "name": "Identical feature vectors across train/validation",
+        "status": "pass",
+        "evidence": "0 validation rows have an exact feature-vector twin in their training fold",
+        "code_ref": "models/pipeline.py"
+      },
+      {
+        "id": "target_leakage",
+        "name": "Forbidden/target columns absent from features",
+        "status": "pass",
+        "evidence": "14 features checked against 42 forbidden columns and the target",
+        "code_ref": "models/pipeline.py::assert_no_feature_leakage"
+      },
+      {
+        "id": "preprocessing_in_fold",
+        "name": "Imputer/scaler/encoder fitted on training fold only",
+        "status": "pass",
+        "evidence": "fold pipeline cloned and fitted on X_tr each fold: True; production artifact first step is 'prep': True",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "temporal_leakage",
+        "name": "Temporal ordering",
+        "status": "na",
+        "evidence": "Records carry no observation timestamp (static LCA reference values); a temporal split is not defined for this data",
+        "code_ref": "-"
+      },
+      {
+        "id": "selection_on_oof",
+        "name": "Model-family selection uses the same OOF scores that are reported",
+        "status": "warn",
+        "evidence": "Champion = argmin penalised OOF MAE among candidates; inner GridSearchCV is nested, but the final OOF numbers are also the selection criterion (optimistic bias possible)",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "independent_holdout",
+        "name": "Untouched final test set",
+        "status": "pass",
+        "evidence": "9 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      }
+    ],
+    "dataset_file": "data/processed/pdo_cheese_harmonized.csv"
+  },
+  "task2b_pdo_cheese_post_farm": {
+    "task_key": "task2b_pdo_cheese_post_farm",
+    "n_rows": 44,
+    "n_dev_rows": 35,
+    "n_holdout_rows": 9,
+    "n_features": 14,
+    "seed": 42,
+    "split_method": "20% Stratified Holdout + StratifiedKFold(n_splits=5) by target quartile on dev split",
+    "fold_sizes": [
+      {
+        "fold": 1,
+        "train": 28,
+        "validation": 7
+      },
+      {
+        "fold": 2,
+        "train": 28,
+        "validation": 7
+      },
+      {
+        "fold": 3,
+        "train": 28,
+        "validation": 7
+      },
+      {
+        "fold": 4,
+        "train": 28,
+        "validation": 7
+      },
+      {
+        "fold": 5,
+        "train": 28,
+        "validation": 7
+      }
+    ],
+    "validation_fraction": 0.2,
+    "checks": [
+      {
+        "id": "split_integrity",
+        "name": "Train/validation indices never overlap",
+        "status": "pass",
+        "evidence": "0 overlapping indices across 5 folds",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "full_coverage",
+        "name": "Every record is validated exactly once (OOF)",
+        "status": "pass",
+        "evidence": "min/max validation count per record = 1/1",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "entity_unique",
+        "name": "One record per entity (pdo_cheese_id)",
+        "status": "pass",
+        "evidence": "44 unique 'pdo_cheese_id' values in 44 rows",
+        "code_ref": "data/harmonize.py"
+      },
+      {
+        "id": "group_leakage",
+        "name": "No group (product) shared between train and validation",
+        "status": "na",
+        "evidence": "Each row is its own entity (255 products / 44 cheeses); no repeated groups exist",
+        "code_ref": "models/pipeline.py::run_task3_simulator_surrogate"
+      },
+      {
+        "id": "duplicate_feature_vectors",
+        "name": "Identical feature vectors across train/validation",
+        "status": "pass",
+        "evidence": "0 validation rows have an exact feature-vector twin in their training fold",
+        "code_ref": "models/pipeline.py"
+      },
+      {
+        "id": "target_leakage",
+        "name": "Forbidden/target columns absent from features",
+        "status": "pass",
+        "evidence": "14 features checked against 42 forbidden columns and the target",
+        "code_ref": "models/pipeline.py::assert_no_feature_leakage"
+      },
+      {
+        "id": "preprocessing_in_fold",
+        "name": "Imputer/scaler/encoder fitted on training fold only",
+        "status": "pass",
+        "evidence": "fold pipeline cloned and fitted on X_tr each fold: True; production artifact first step is 'prep': True",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "temporal_leakage",
+        "name": "Temporal ordering",
+        "status": "na",
+        "evidence": "Records carry no observation timestamp (static LCA reference values); a temporal split is not defined for this data",
+        "code_ref": "-"
+      },
+      {
+        "id": "selection_on_oof",
+        "name": "Model-family selection uses the same OOF scores that are reported",
+        "status": "warn",
+        "evidence": "Champion = argmin penalised OOF MAE among candidates; inner GridSearchCV is nested, but the final OOF numbers are also the selection criterion (optimistic bias possible)",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      },
+      {
+        "id": "independent_holdout",
+        "name": "Untouched final test set",
+        "status": "pass",
+        "evidence": "9 untouched holdout records (20%); 0 index overlap, 0 group overlap with dev split",
+        "code_ref": "models/pipeline.py::_evaluate_candidates"
+      }
+    ],
+    "dataset_file": "data/processed/pdo_cheese_harmonized.csv"
+  }
+}

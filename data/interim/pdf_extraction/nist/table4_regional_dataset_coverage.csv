@@ -1,0 +1,7 @@
+regional_dataset_factor,PET,HDPE,LDPE,PP,PVC,pdf_page,report_page,table_ref
+Electricity grid mix,Y,Y,Y,Y,Y,23,8,Table 4
+NG supply chain,Y,Y,Y,Y,Y,23,8,Table 4
+Steam cracking feedstock mix (NGL vs. petroleum),Y,Y,Y,Y,N,23,8,Table 4
+Propylene sources (steam cracking vs. non-steam cracking processes such as FCC and PDH),N,N,N,Y,N,23,8,Table 4
+Terephthalic monomer type for PET production (PTA vs. DMT),Y,N,N,N,N,24,9,Table 4
+Acetylene vs. EDC pathway mix in VCM production,N,N,N,N,Y,24,9,Table 4

@@ -1,0 +1,1795 @@
+{
+  "task3a_surrogate_gwp": {
+    "n": 1200,
+    "target": "target_packaging_system_gwp_kgco2e_per_fu",
+    "target_unit": "kg CO\u2082e / 1,000 kg FU",
+    "target_summary": {
+      "count": 1200.0,
+      "mean": 283.8636958333333,
+      "std": 129.1716952337777,
+      "min": 55.215,
+      "25%": 184.50075,
+      "50%": 260.27,
+      "75%": 360.86899999999997,
+      "max": 1025.654
+    },
+    "target_skew": 1.0197440399667985,
+    "target_hist": {
+      "counts": [
+        30,
+        134,
+        213,
+        183,
+        147,
+        159,
+        119,
+        82,
+        52,
+        30,
+        20,
+        15,
+        3,
+        7,
+        3,
+        0,
+        2,
+        0,
+        0,
+        1
+      ],
+      "edges": [
+        55.215,
+        103.73695000000001,
+        152.25889999999998,
+        200.78085,
+        249.3028,
+        297.82475,
+        346.34669999999994,
+        394.86865,
+        443.39059999999995,
+        491.91255,
+        540.4345,
+        588.95645,
+        637.4784,
+        686.00035,
+        734.5223,
+        783.04425,
+        831.5662,
+        880.0881499999999,
+        928.6101,
+        977.1320499999999,
+        1025.654
+      ]
+    },
+    "numeric_features": [
+      {
+        "feature": "is_reusable",
+        "missing": 0,
+        "mean": 0.034166666666666665,
+        "std": 0.18173284764221634,
+        "min": 0.0,
+        "max": 1.0,
+        "skew": 5.135131314098737,
+        "iqr_outliers": 0,
+        "n_unique": 2
+      },
+      {
+        "feature": "effective_reuse_trips",
+        "missing": 0,
+        "mean": 1.1909366666666665,
+        "std": 1.1835194264774858,
+        "min": 1.0,
+        "max": 16.19,
+        "skew": 7.692808483382435,
+        "iqr_outliers": 0,
+        "n_unique": 42
+      },
+      {
+        "feature": "net_fill_mass_kg",
+        "missing": 0,
+        "mean": 0.8002083333333333,
+        "std": 2.6481085902681745,
+        "min": 0.2,
+        "max": 25.0,
+        "skew": 8.921769493604929,
+        "iqr_outliers": 14,
+        "n_unique": 5
+      },
+      {
+        "feature": "total_bom_mass_g_per_pkg",
+        "missing": 0,
+        "mean": 59.804199166666656,
+        "std": 116.23845347149125,
+        "min": 6.133,
+        "max": 581.374,
+        "skew": 3.0228945193135863,
+        "iqr_outliers": 153,
+        "n_unique": 1183
+      },
+      {
+        "feature": "effective_bom_mass_kg_per_fu",
+        "missing": 0,
+        "mean": 72.35034891666668,
+        "std": 74.83704214464862,
+        "min": 15.6823,
+        "max": 536.9668,
+        "skew": 4.423601120282151,
+        "iqr_outliers": 63,
+        "n_unique": 1199
+      },
+      {
+        "feature": "primary_recycled_content_frac",
+        "missing": 0,
+        "mean": 0.3467683333333333,
+        "std": 0.20357997692076227,
+        "min": 0.0,
+        "max": 0.7,
+        "skew": 0.04597745328283621,
+        "iqr_outliers": 0,
+        "n_unique": 564
+      },
+      {
+        "feature": "weighted_eol_recycling_frac",
+        "missing": 0,
+        "mean": 0.42924116666666673,
+        "std": 0.07945143399550555,
+        "min": 0.3245,
+        "max": 0.6455,
+        "skew": 0.7193839064207497,
+        "iqr_outliers": 0,
+        "n_unique": 14
+      },
+      {
+        "feature": "weighted_avg_material_price_usd_per_kg",
+        "missing": 0,
+        "mean": 1.4490756666666669,
+        "std": 0.34640093046701326,
+        "min": 0.4282,
+        "max": 2.1798,
+        "skew": -0.8861839449682316,
+        "iqr_outliers": 45,
+        "n_unique": 1101
+      },
+      {
+        "feature": "supplier_distance_km",
+        "missing": 0,
+        "mean": 434.7008333333333,
+        "std": 221.5755082453475,
+        "min": 50.2,
+        "max": 800.0,
+        "skew": -0.048460975532744914,
+        "iqr_outliers": 0,
+        "n_unique": 1101
+      },
+      {
+        "feature": "distribution_distance_km",
+        "missing": 0,
+        "mean": 261.12183333333337,
+        "std": 135.52794955616338,
+        "min": 30.2,
+        "max": 499.6,
+        "skew": 0.052012556058217564,
+        "iqr_outliers": 0,
+        "n_unique": 1050
+      },
+      {
+        "feature": "line_reject_rate",
+        "missing": 0,
+        "mean": 0.012851166666666667,
+        "std": 0.006929964091355629,
+        "min": 0.001,
+        "max": 0.025,
+        "skew": -0.02960760728440093,
+        "iqr_outliers": 0,
+        "n_unique": 239
+      },
+      {
+        "feature": "spoilage_loss_rate",
+        "missing": 0,
+        "mean": 0.01820375,
+        "std": 0.009434898446445813,
+        "min": 0.002,
+        "max": 0.035,
+        "skew": 0.0694351784302961,
+        "iqr_outliers": 0,
+        "n_unique": 324
+      },
+      {
+        "feature": "grid_ci_kgco2e_per_kwh",
+        "missing": 0,
+        "mean": 0.4614150000000001,
+        "std": 0.2182868878628399,
+        "min": 0.081,
+        "max": 0.85,
+        "skew": 0.019492271790363933,
+        "iqr_outliers": 0,
+        "n_unique": 610
+      },
+      {
+        "feature": "electricity_price_usd_per_kwh",
+        "missing": 0,
+        "mean": 0.11010083333333331,
+        "std": 0.04113655121475011,
+        "min": 0.04,
+        "max": 0.18,
+        "skew": -0.0040760670498898015,
+        "iqr_outliers": 0,
+        "n_unique": 141
+      },
+      {
+        "feature": "dairy_non_packaging_gwp_per_kg",
+        "missing": 0,
+        "mean": 4.128503916666667,
+        "std": 2.306778136189303,
+        "min": 0.692,
+        "max": 12.338,
+        "skew": 0.29660072370825613,
+        "iqr_outliers": 6,
+        "n_unique": 181
+      }
+    ],
+    "target_correlations": {
+      "dairy_non_packaging_gwp_per_kg": 0.5827150587136559,
+      "effective_bom_mass_kg_per_fu": 0.5018459127466266,
+      "net_fill_mass_kg": -0.38123986746729993,
+      "spoilage_loss_rate": 0.330948427766714,
+      "weighted_eol_recycling_frac": -0.27234178355689964,
+      "line_reject_rate": 0.26147479565446496,
+      "total_bom_mass_g_per_pkg": -0.144119354586615,
+      "grid_ci_kgco2e_per_kwh": 0.11761651777327668,
+      "primary_recycled_content_frac": -0.1073884231436369,
+      "distribution_distance_km": 0.09825999736475922,
+      "effective_reuse_trips": -0.07018750237123515,
+      "is_reusable": -0.06847127653429791,
+      "supplier_distance_km": 0.061607346214838876,
+      "weighted_avg_material_price_usd_per_kg": 0.016740365400390714,
+      "electricity_price_usd_per_kwh": -0.00012222631517189563
+    },
+    "collinear_pairs": [
+      {
+        "a": "is_reusable",
+        "b": "effective_reuse_trips",
+        "spearman": 0.9997987377964408
+      }
+    ],
+    "categorical": {
+      "preset_id": [
+        {
+          "level": "PKG-RPP30-CUP-400G",
+          "count": 259,
+          "target_mean": 254.43320077220073
+        },
+        {
+          "level": "PKG-PP-CUP-400G",
+          "count": 256,
+          "target_mean": 287.81305078125
+        },
+        {
+          "level": "PKG-CHEESE-FLOWPACK-250G",
+          "count": 185,
+          "target_mean": 371.89683243243246
+        },
+        {
+          "level": "PKG-BUTTER-FOILWRAP-200G",
+          "count": 160,
+          "target_mean": 302.74168125
+        },
+        {
+          "level": "PKG-RPET50-BOTTLE-1L",
+          "count": 56,
+          "target_mean": 165.22805357142857
+        },
+        {
+          "level": "PKG-CARTON-LPB-1L",
+          "count": 53,
+          "target_mean": 165.11981132075474
+        },
+        {
+          "level": "PKG-HDPE-BOTTLE-1L",
+          "count": 53,
+          "target_mean": 166.29222641509432
+        },
+        {
+          "level": "PKG-GLASS-SINGLE-1L",
+          "count": 50,
+          "target_mean": 600.5203
+        },
+        {
+          "level": "PKG-GLASS-REUSE-1L",
+          "count": 41,
+          "target_mean": 235.71053658536584
+        },
+        {
+          "level": "PKG-PET-BOTTLE-1L",
+          "count": 39,
+          "target_mean": 191.23879487179488
+        },
+        {
+          "level": "PKG-POUCH-LDPE-1L",
+          "count": 34,
+          "target_mean": 137.77270588235294
+        },
+        {
+          "level": "PKG-POWDER-SACK-25KG",
+          "count": 14,
+          "target_mean": 369.15507142857143
+        }
+      ],
+      "dairy_category": [
+        {
+          "level": "cheese",
+          "count": 620,
+          "target_mean": 323.0710870967742
+        },
+        {
+          "level": "yogurt_kefir",
+          "count": 336,
+          "target_mean": 232.35105952380954
+        },
+        {
+          "level": "ice_cream",
+          "count": 110,
+          "target_mean": 196.97923636363637
+        },
+        {
+          "level": "fluid_milk",
+          "count": 55,
+          "target_mean": 248.48823636363636
+        },
+        {
+          "level": "butter",
+          "count": 47,
+          "target_mean": 370.0030425531915
+        },
+        {
+          "level": "cream",
+          "count": 18,
+          "target_mean": 242.75122222222222
+        },
+        {
+          "level": "milk_powder",
+          "count": 14,
+          "target_mean": 369.15507142857143
+        }
+      ],
+      "package_format": [
+        {
+          "level": "cup",
+          "count": 515,
+          "target_mean": 271.02590291262135
+        },
+        {
+          "level": "bottle",
+          "count": 239,
+          "target_mean": 272.8649330543933
+        },
+        {
+          "level": "tub",
+          "count": 185,
+          "target_mean": 371.89683243243246
+        },
+        {
+          "level": "film_wrap",
+          "count": 160,
+          "target_mean": 302.74168125
+        },
+        {
+          "level": "carton",
+          "count": 53,
+          "target_mean": 165.11981132075474
+        },
+        {
+          "level": "pouch",
+          "count": 34,
+          "target_mean": 137.77270588235294
+        },
+        {
+          "level": "sack",
+          "count": 14,
+          "target_mean": 369.15507142857143
+        }
+      ],
+      "primary_material": [
+        {
+          "level": "PP",
+          "count": 515,
+          "target_mean": 271.02590291262135
+        },
+        {
+          "level": "PET",
+          "count": 280,
+          "target_mean": 305.3999928571429
+        },
+        {
+          "level": "aluminium",
+          "count": 160,
+          "target_mean": 302.74168125
+        },
+        {
+          "level": "glass",
+          "count": 91,
+          "target_mean": 436.1554615384615
+        },
+        {
+          "level": "liquid_packaging_board",
+          "count": 53,
+          "target_mean": 165.11981132075474
+        },
+        {
+          "level": "HDPE",
+          "count": 53,
+          "target_mean": 166.29222641509432
+        },
+        {
+          "level": "LLDPE",
+          "count": 34,
+          "target_mean": 137.77270588235294
+        },
+        {
+          "level": "paperboard",
+          "count": 14,
+          "target_mean": 369.15507142857143
+        }
+      ],
+      "primary_conversion": [
+        {
+          "level": "thermoforming",
+          "count": 700,
+          "target_mean": 297.68464857142857
+        },
+        {
+          "level": "aluminium_foil_rolling",
+          "count": 160,
+          "target_mean": 302.74168125
+        },
+        {
+          "level": "blow_molding",
+          "count": 148,
+          "target_mean": 172.46332432432433
+        },
+        {
+          "level": "glass_forming",
+          "count": 91,
+          "target_mean": 436.1554615384615
+        },
+        {
+          "level": "carton_converting",
+          "count": 67,
+          "target_mean": 207.7540447761194
+        },
+        {
+          "level": "film_extrusion",
+          "count": 34,
+          "target_mean": 137.77270588235294
+        }
+      ],
+      "resin_region": [
+        {
+          "level": "USA",
+          "count": 255,
+          "target_mean": 274.0505333333333
+        },
+        {
+          "level": "MENA",
+          "count": 250,
+          "target_mean": 293.333888
+        },
+        {
+          "level": "China",
+          "count": 238,
+          "target_mean": 284.9251302521008
+        },
+        {
+          "level": "Western Europe",
+          "count": 230,
+          "target_mean": 285.5235173913043
+        },
+        {
+          "level": "Cross-regional average",
+          "count": 227,
+          "target_mean": 281.6629383259912
+        }
+      ]
+    },
+    "missing_features": {},
+    "geography": {
+      "synthetic grid/resin regions": "see resin_region"
+    },
+    "reference_year": {
+      "Not recorded / Unknown": 1200
+    },
+    "class_balance_note": "Imbalance measured on the largest categorical feature level share: 22%"
+  },
+  "task3b_surrogate_cost": {
+    "n": 1200,
+    "target": "target_packaging_cost_usd_per_fu",
+    "target_unit": "USD / 1,000 kg FU",
+    "target_summary": {
+      "count": 1200.0,
+      "mean": 125.55225833333333,
+      "std": 50.02387083210828,
+      "min": 37.05,
+      "25%": 96.1075,
+      "50%": 117.035,
+      "75%": 140.2275,
+      "max": 436.8
+    },
+    "target_skew": 2.4556916637501907,
+    "target_hist": {
+      "counts": [
+        24,
+        61,
+        228,
+        287,
+        250,
+        173,
+        85,
+        29,
+        15,
+        5,
+        3,
+        6,
+        2,
+        13,
+        5,
+        3,
+        6,
+        2,
+        1,
+        2
+      ],
+      "edges": [
+        37.05,
+        57.037499999999994,
+        77.025,
+        97.0125,
+        117.0,
+        136.9875,
+        156.97500000000002,
+        176.96249999999998,
+        196.95,
+        216.9375,
+        236.925,
+        256.9125,
+        276.90000000000003,
+        296.88750000000005,
+        316.875,
+        336.8625,
+        356.85,
+        376.83750000000003,
+        396.82500000000005,
+        416.8125,
+        436.8
+      ]
+    },
+    "numeric_features": [
+      {
+        "feature": "is_reusable",
+        "missing": 0,
+        "mean": 0.034166666666666665,
+        "std": 0.18173284764221634,
+        "min": 0.0,
+        "max": 1.0,
+        "skew": 5.135131314098737,
+        "iqr_outliers": 0,
+        "n_unique": 2
+      },
+      {
+        "feature": "effective_reuse_trips",
+        "missing": 0,
+        "mean": 1.1909366666666665,
+        "std": 1.1835194264774858,
+        "min": 1.0,
+        "max": 16.19,
+        "skew": 7.692808483382435,
+        "iqr_outliers": 0,
+        "n_unique": 42
+      },
+      {
+        "feature": "net_fill_mass_kg",
+        "missing": 0,
+        "mean": 0.8002083333333333,
+        "std": 2.6481085902681745,
+        "min": 0.2,
+        "max": 25.0,
+        "skew": 8.921769493604929,
+        "iqr_outliers": 14,
+        "n_unique": 5
+      },
+      {
+        "feature": "total_bom_mass_g_per_pkg",
+        "missing": 0,
+        "mean": 59.804199166666656,
+        "std": 116.23845347149125,
+        "min": 6.133,
+        "max": 581.374,
+        "skew": 3.0228945193135863,
+        "iqr_outliers": 153,
+        "n_unique": 1183
+      },
+      {
+        "feature": "effective_bom_mass_kg_per_fu",
+        "missing": 0,
+        "mean": 72.35034891666668,
+        "std": 74.83704214464862,
+        "min": 15.6823,
+        "max": 536.9668,
+        "skew": 4.423601120282151,
+        "iqr_outliers": 63,
+        "n_unique": 1199
+      },
+      {
+        "feature": "primary_recycled_content_frac",
+        "missing": 0,
+        "mean": 0.3467683333333333,
+        "std": 0.20357997692076227,
+        "min": 0.0,
+        "max": 0.7,
+        "skew": 0.04597745328283621,
+        "iqr_outliers": 0,
+        "n_unique": 564
+      },
+      {
+        "feature": "weighted_eol_recycling_frac",
+        "missing": 0,
+        "mean": 0.42924116666666673,
+        "std": 0.07945143399550555,
+        "min": 0.3245,
+        "max": 0.6455,
+        "skew": 0.7193839064207497,
+        "iqr_outliers": 0,
+        "n_unique": 14
+      },
+      {
+        "feature": "weighted_avg_material_price_usd_per_kg",
+        "missing": 0,
+        "mean": 1.4490756666666669,
+        "std": 0.34640093046701326,
+        "min": 0.4282,
+        "max": 2.1798,
+        "skew": -0.8861839449682316,
+        "iqr_outliers": 45,
+        "n_unique": 1101
+      },
+      {
+        "feature": "supplier_distance_km",
+        "missing": 0,
+        "mean": 434.7008333333333,
+        "std": 221.5755082453475,
+        "min": 50.2,
+        "max": 800.0,
+        "skew": -0.048460975532744914,
+        "iqr_outliers": 0,
+        "n_unique": 1101
+      },
+      {
+        "feature": "distribution_distance_km",
+        "missing": 0,
+        "mean": 261.12183333333337,
+        "std": 135.52794955616338,
+        "min": 30.2,
+        "max": 499.6,
+        "skew": 0.052012556058217564,
+        "iqr_outliers": 0,
+        "n_unique": 1050
+      },
+      {
+        "feature": "line_reject_rate",
+        "missing": 0,
+        "mean": 0.012851166666666667,
+        "std": 0.006929964091355629,
+        "min": 0.001,
+        "max": 0.025,
+        "skew": -0.02960760728440093,
+        "iqr_outliers": 0,
+        "n_unique": 239
+      },
+      {
+        "feature": "spoilage_loss_rate",
+        "missing": 0,
+        "mean": 0.01820375,
+        "std": 0.009434898446445813,
+        "min": 0.002,
+        "max": 0.035,
+        "skew": 0.0694351784302961,
+        "iqr_outliers": 0,
+        "n_unique": 324
+      },
+      {
+        "feature": "grid_ci_kgco2e_per_kwh",
+        "missing": 0,
+        "mean": 0.4614150000000001,
+        "std": 0.2182868878628399,
+        "min": 0.081,
+        "max": 0.85,
+        "skew": 0.019492271790363933,
+        "iqr_outliers": 0,
+        "n_unique": 610
+      },
+      {
+        "feature": "electricity_price_usd_per_kwh",
+        "missing": 0,
+        "mean": 0.11010083333333331,
+        "std": 0.04113655121475011,
+        "min": 0.04,
+        "max": 0.18,
+        "skew": -0.0040760670498898015,
+        "iqr_outliers": 0,
+        "n_unique": 141
+      },
+      {
+        "feature": "dairy_non_packaging_gwp_per_kg",
+        "missing": 0,
+        "mean": 4.128503916666667,
+        "std": 2.306778136189303,
+        "min": 0.692,
+        "max": 12.338,
+        "skew": 0.29660072370825613,
+        "iqr_outliers": 6,
+        "n_unique": 181
+      }
+    ],
+    "target_correlations": {
+      "effective_bom_mass_kg_per_fu": 0.8112818836483723,
+      "weighted_eol_recycling_frac": -0.4010769103550514,
+      "weighted_avg_material_price_usd_per_kg": 0.2606273375425057,
+      "spoilage_loss_rate": 0.253514559687896,
+      "line_reject_rate": 0.24073186415429937,
+      "total_bom_mass_g_per_pkg": 0.18269988380389454,
+      "net_fill_mass_kg": -0.1580748690956228,
+      "distribution_distance_km": 0.08014000328542184,
+      "supplier_distance_km": 0.0724185787584525,
+      "dairy_non_packaging_gwp_per_kg": 0.05161583296725973,
+      "primary_recycled_content_frac": -0.03602167781124161,
+      "is_reusable": 0.02513460976381201,
+      "grid_ci_kgco2e_per_kwh": 0.02492553182404137,
+      "effective_reuse_trips": 0.02265046838045488,
+      "electricity_price_usd_per_kwh": 0.006505930514463561
+    },
+    "collinear_pairs": [
+      {
+        "a": "is_reusable",
+        "b": "effective_reuse_trips",
+        "spearman": 0.9997987377964408
+      }
+    ],
+    "categorical": {
+      "preset_id": [
+        {
+          "level": "PKG-RPP30-CUP-400G",
+          "count": 259,
+          "target_mean": 112.17247104247103
+        },
+        {
+          "level": "PKG-PP-CUP-400G",
+          "count": 256,
+          "target_mean": 127.029765625
+        },
+        {
+          "level": "PKG-CHEESE-FLOWPACK-250G",
+          "count": 185,
+          "target_mean": 150.1002162162162
+        },
+        {
+          "level": "PKG-BUTTER-FOILWRAP-200G",
+          "count": 160,
+          "target_mean": 106.7068125
+        },
+        {
+          "level": "PKG-RPET50-BOTTLE-1L",
+          "count": 56,
+          "target_mean": 95.73857142857142
+        },
+        {
+          "level": "PKG-CARTON-LPB-1L",
+          "count": 53,
+          "target_mean": 99.71773584905661
+        },
+        {
+          "level": "PKG-HDPE-BOTTLE-1L",
+          "count": 53,
+          "target_mean": 110.24811320754716
+        },
+        {
+          "level": "PKG-GLASS-SINGLE-1L",
+          "count": 50,
+          "target_mean": 306.1278
+        },
+        {
+          "level": "PKG-GLASS-REUSE-1L",
+          "count": 41,
+          "target_mean": 125.33390243902438
+        },
+        {
+          "level": "PKG-PET-BOTTLE-1L",
+          "count": 39,
+          "target_mean": 116.20846153846153
+        },
+        {
+          "level": "PKG-POUCH-LDPE-1L",
+          "count": 34,
+          "target_mean": 59.11147058823529
+        },
+        {
+          "level": "PKG-POWDER-SACK-25KG",
+          "count": 14,
+          "target_mean": 55.160000000000004
+        }
+      ],
+      "dairy_category": [
+        {
+          "level": "cheese",
+          "count": 620,
+          "target_mean": 124.56454838709678
+        },
+        {
+          "level": "yogurt_kefir",
+          "count": 336,
+          "target_mean": 128.9947023809524
+        },
+        {
+          "level": "ice_cream",
+          "count": 110,
+          "target_mean": 119.22636363636363
+        },
+        {
+          "level": "fluid_milk",
+          "count": 55,
+          "target_mean": 142.86854545454545
+        },
+        {
+          "level": "butter",
+          "count": 47,
+          "target_mean": 127.46212765957448
+        },
+        {
+          "level": "cream",
+          "count": 18,
+          "target_mean": 130.82444444444445
+        },
+        {
+          "level": "milk_powder",
+          "count": 14,
+          "target_mean": 55.160000000000004
+        }
+      ],
+      "package_format": [
+        {
+          "level": "cup",
+          "count": 515,
+          "target_mean": 119.55784466019418
+        },
+        {
+          "level": "bottle",
+          "count": 239,
+          "target_mean": 151.38794979079498
+        },
+        {
+          "level": "tub",
+          "count": 185,
+          "target_mean": 150.1002162162162
+        },
+        {
+          "level": "film_wrap",
+          "count": 160,
+          "target_mean": 106.7068125
+        },
+        {
+          "level": "carton",
+          "count": 53,
+          "target_mean": 99.71773584905661
+        },
+        {
+          "level": "pouch",
+          "count": 34,
+          "target_mean": 59.11147058823529
+        },
+        {
+          "level": "sack",
+          "count": 14,
+          "target_mean": 55.160000000000004
+        }
+      ],
+      "primary_material": [
+        {
+          "level": "PP",
+          "count": 515,
+          "target_mean": 119.55784466019418
+        },
+        {
+          "level": "PET",
+          "count": 280,
+          "target_mean": 134.50725
+        },
+        {
+          "level": "aluminium",
+          "count": 160,
+          "target_mean": 106.7068125
+        },
+        {
+          "level": "glass",
+          "count": 91,
+          "target_mean": 224.6712087912088
+        },
+        {
+          "level": "liquid_packaging_board",
+          "count": 53,
+          "target_mean": 99.71773584905661
+        },
+        {
+          "level": "HDPE",
+          "count": 53,
+          "target_mean": 110.24811320754716
+        },
+        {
+          "level": "LLDPE",
+          "count": 34,
+          "target_mean": 59.11147058823529
+        },
+        {
+          "level": "paperboard",
+          "count": 14,
+          "target_mean": 55.160000000000004
+        }
+      ],
+      "primary_conversion": [
+        {
+          "level": "thermoforming",
+          "count": 700,
+          "target_mean": 127.62975714285714
+        },
+        {
+          "level": "aluminium_foil_rolling",
+          "count": 160,
+          "target_mean": 106.7068125
+        },
+        {
+          "level": "blow_molding",
+          "count": 148,
+          "target_mean": 106.32864864864864
+        },
+        {
+          "level": "glass_forming",
+          "count": 91,
+          "target_mean": 224.6712087912088
+        },
+        {
+          "level": "carton_converting",
+          "count": 67,
+          "target_mean": 90.40716417910447
+        },
+        {
+          "level": "film_extrusion",
+          "count": 34,
+          "target_mean": 59.11147058823529
+        }
+      ],
+      "resin_region": [
+        {
+          "level": "USA",
+          "count": 255,
+          "target_mean": 123.03047058823529
+        },
+        {
+          "level": "MENA",
+          "count": 250,
+          "target_mean": 130.82580000000002
+        },
+        {
+          "level": "China",
+          "count": 238,
+          "target_mean": 123.32596638655463
+        },
+        {
+          "level": "Western Europe",
+          "count": 230,
+          "target_mean": 123.53708695652173
+        },
+        {
+          "level": "Cross-regional average",
+          "count": 227,
+          "target_mean": 126.95321585903085
+        }
+      ]
+    },
+    "missing_features": {},
+    "geography": {
+      "synthetic grid/resin regions": "see resin_region"
+    },
+    "reference_year": {
+      "Not recorded / Unknown": 1200
+    },
+    "class_balance_note": "Imbalance measured on the largest categorical feature level share: 22%"
+  },
+  "task1_agribalyse_gwp": {
+    "n": 255,
+    "target": "non_packaging_gwp_kgco2e_per_kg",
+    "target_unit": "kg CO\u2082e / kg product",
+    "target_summary": {
+      "count": 255.0,
+      "mean": 3.971079215686274,
+      "std": 2.3529679755943578,
+      "min": 0.692,
+      "25%": 1.58,
+      "50%": 4.737,
+      "75%": 5.7059999999999995,
+      "max": 12.338
+    },
+    "target_skew": 0.4162884921463283,
+    "target_hist": {
+      "counts": [
+        12,
+        84,
+        12,
+        2,
+        6,
+        1,
+        11,
+        51,
+        29,
+        19,
+        8,
+        2,
+        11,
+        1,
+        3,
+        0,
+        2,
+        0,
+        0,
+        1
+      ],
+      "edges": [
+        0.692,
+        1.2742999999999998,
+        1.8565999999999998,
+        2.4388999999999994,
+        3.0211999999999994,
+        3.6034999999999995,
+        4.1857999999999995,
+        4.7681,
+        5.3504,
+        5.9327,
+        6.515,
+        7.0973,
+        7.679599999999999,
+        8.261899999999999,
+        8.844199999999999,
+        9.426499999999999,
+        10.008799999999999,
+        10.591099999999999,
+        11.173399999999999,
+        11.7557,
+        12.338
+      ]
+    },
+    "numeric_features": [
+      {
+        "feature": "milk_yield_kg_milk_per_kg_product",
+        "missing": 139,
+        "mean": 7.504827586206896,
+        "std": 1.376798101935521,
+        "min": 4.2,
+        "max": 11.6,
+        "skew": 0.12991421234436631,
+        "iqr_outliers": 1,
+        "n_unique": 50
+      },
+      {
+        "feature": "density_kg_per_l",
+        "missing": 0,
+        "mean": 0.9920196078431374,
+        "std": 0.14996830245089485,
+        "min": 0.52,
+        "max": 1.08,
+        "skew": -2.5668675427904506,
+        "iqr_outliers": 55,
+        "n_unique": 9
+      },
+      {
+        "feature": "dqr_overall",
+        "missing": 0,
+        "mean": 1.8159607843137255,
+        "std": 0.520819083887212,
+        "min": 1.09,
+        "max": 3.08,
+        "skew": 0.23007035927212185,
+        "iqr_outliers": 0,
+        "n_unique": 78
+      }
+    ],
+    "target_correlations": {
+      "milk_yield_kg_milk_per_kg_product": 0.6917469045315345,
+      "dqr_overall": 0.5026980389569291,
+      "density_kg_per_l": 0.47476450852408375
+    },
+    "collinear_pairs": [],
+    "categorical": {
+      "category": [
+        {
+          "level": "cheese",
+          "count": 121,
+          "target_mean": 5.527578512396694
+        },
+        {
+          "level": "yogurt_kefir",
+          "count": 79,
+          "target_mean": 2.1444050632911393
+        },
+        {
+          "level": "ice_cream",
+          "count": 22,
+          "target_mean": 1.7041818181818185
+        },
+        {
+          "level": "fluid_milk",
+          "count": 14,
+          "target_mean": 1.4732285714285713
+        },
+        {
+          "level": "butter",
+          "count": 10,
+          "target_mean": 6.882
+        },
+        {
+          "level": "cream",
+          "count": 6,
+          "target_mean": 2.5748333333333333
+        },
+        {
+          "level": "milk_powder",
+          "count": 3,
+          "target_mean": 10.664666666666667
+        }
+      ],
+      "agribalyse_subgroup_fr": [
+        {
+          "level": "fromages",
+          "count": 121,
+          "target_mean": 5.527578512396694
+        },
+        {
+          "level": "produits laitiers frais et assimil\u00e9s",
+          "count": 79,
+          "target_mean": 2.1444050632911393
+        },
+        {
+          "level": "laits",
+          "count": 17,
+          "target_mean": 3.0952470588235292
+        },
+        {
+          "level": "desserts glac\u00e9s",
+          "count": 12,
+          "target_mean": 1.7995833333333333
+        },
+        {
+          "level": "beurres",
+          "count": 10,
+          "target_mean": 6.882
+        },
+        {
+          "level": "glaces",
+          "count": 10,
+          "target_mean": 1.5897000000000001
+        },
+        {
+          "level": "cr\u00e8mes et sp\u00e9cialit\u00e9s \u00e0 base de cr\u00e8me",
+          "count": 6,
+          "target_mean": 2.5748333333333333
+        }
+      ],
+      "delivery_mode": [
+        {
+          "level": "Glac\u00e9",
+          "count": 209,
+          "target_mean": 4.3437559808612445
+        },
+        {
+          "level": "Ambiant (long)",
+          "count": 24,
+          "target_mean": 2.803675
+        },
+        {
+          "level": "Congel\u00e9",
+          "count": 22,
+          "target_mean": 1.7041818181818185
+        }
+      ],
+      "baseline_packaging_approach": [
+        {
+          "level": "PACK AGB",
+          "count": 230,
+          "target_mean": 4.22024
+        },
+        {
+          "level": "PACK PROXY",
+          "count": 25,
+          "target_mean": 1.6787999999999998
+        }
+      ]
+    },
+    "missing_features": {
+      "milk_yield_kg_milk_per_kg_product": 139
+    },
+    "geography": {
+      "FR": 255
+    },
+    "reference_year": {
+      "2024/2025": 255
+    },
+    "class_balance_note": "Imbalance measured on the largest categorical feature level share: 47%"
+  },
+  "task2a_pdo_cheese_total": {
+    "n": 44,
+    "target": "gwp_base_total_kgco2e_per_kg",
+    "target_unit": "kg CO\u2082e / kg ripened cheese",
+    "target_summary": {
+      "count": 44.0,
+      "mean": 8.04309568181818,
+      "std": 2.8717308740825893,
+      "min": 4.663876,
+      "25%": 5.89918625,
+      "50%": 7.3648625,
+      "75%": 8.9416875,
+      "max": 16.597509
+    },
+    "target_skew": 1.5040144314464459,
+    "target_hist": {
+      "counts": [
+        5,
+        5,
+        4,
+        5,
+        5,
+        3,
+        5,
+        6,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2,
+        1,
+        0,
+        1
+      ],
+      "edges": [
+        4.663876,
+        5.26055765,
+        5.8572393,
+        6.4539209500000005,
+        7.0506025999999995,
+        7.64728425,
+        8.2439659,
+        8.84064755,
+        9.4373292,
+        10.03401085,
+        10.630692499999999,
+        11.22737415,
+        11.8240558,
+        12.42073745,
+        13.0174191,
+        13.614100749999999,
+        14.2107824,
+        14.80746405,
+        15.404145699999999,
+        16.00082735,
+        16.597509
+      ]
+    },
+    "numeric_features": [
+      {
+        "feature": "ripening_days",
+        "missing": 0,
+        "mean": 32.29545454545455,
+        "std": 34.443468713210144,
+        "min": 6.0,
+        "max": 150.0,
+        "skew": 2.254281041272925,
+        "iqr_outliers": 5,
+        "n_unique": 22
+      },
+      {
+        "feature": "allocation_before_skimming",
+        "missing": 0,
+        "mean": 0.4866008391780417,
+        "std": 0.05652853420550415,
+        "min": 0.382,
+        "max": 0.686,
+        "skew": 1.123424767288566,
+        "iqr_outliers": 4,
+        "n_unique": 37
+      },
+      {
+        "feature": "allocation_skimming_to_draining",
+        "missing": 0,
+        "mean": 0.4926818181818182,
+        "std": 0.05323260616772426,
+        "min": 0.41,
+        "max": 0.686,
+        "skew": 1.2673532040588924,
+        "iqr_outliers": 2,
+        "n_unique": 39
+      },
+      {
+        "feature": "allocation_after_draining",
+        "missing": 0,
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "skew": NaN,
+        "iqr_outliers": 0,
+        "n_unique": 1
+      },
+      {
+        "feature": "cream_coproduct_kg_per_kg_cheese",
+        "missing": 0,
+        "mean": 0.0711647785909091,
+        "std": 0.13176616287578688,
+        "min": 0.0,
+        "max": 0.44072299,
+        "skew": 1.6079422592899202,
+        "iqr_outliers": 11,
+        "n_unique": 12
+      },
+      {
+        "feature": "whey_coproduct_kg_per_kg_cheese",
+        "missing": 0,
+        "mean": 7.4418181818181806,
+        "std": 1.6049187079714091,
+        "min": 3.91,
+        "max": 10.11,
+        "skew": -0.1852753075261511,
+        "iqr_outliers": 0,
+        "n_unique": 33
+      },
+      {
+        "feature": "max_authorized_distance_km",
+        "missing": 0,
+        "mean": 118.36363636363636,
+        "std": 62.74065515855854,
+        "min": 15.0,
+        "max": 250.0,
+        "skew": 0.3049099411594763,
+        "iqr_outliers": 0,
+        "n_unique": 39
+      },
+      {
+        "feature": "lci_cow_milk_lowland_kg",
+        "missing": 0,
+        "mean": 1.6206245454545454,
+        "std": 3.569280919528342,
+        "min": 0.0,
+        "max": 12.384,
+        "skew": 1.9253645955337715,
+        "iqr_outliers": 0,
+        "n_unique": 9
+      },
+      {
+        "feature": "lci_cow_milk_highland_kg",
+        "missing": 0,
+        "mean": 4.397572818181818,
+        "std": 4.935982939221549,
+        "min": 0.0,
+        "max": 11.4655,
+        "skew": 0.2626980149529501,
+        "iqr_outliers": 0,
+        "n_unique": 9
+      },
+      {
+        "feature": "lci_sheep_milk_kg",
+        "missing": 0,
+        "mean": 0.24240000000000003,
+        "std": 1.1397967089241916,
+        "min": 0.0,
+        "max": 6.219,
+        "skew": 4.725301251718606,
+        "iqr_outliers": 0,
+        "n_unique": 3
+      },
+      {
+        "feature": "lci_goat_milk_kg",
+        "missing": 0,
+        "mean": 2.4309438636363634,
+        "std": 3.6927548204906344,
+        "min": 0.0,
+        "max": 10.5625,
+        "skew": 0.9817614337650094,
+        "iqr_outliers": 0,
+        "n_unique": 10
+      },
+      {
+        "feature": "lci_total_raw_milk_kg",
+        "missing": 0,
+        "mean": 8.691541227272728,
+        "std": 1.8227717170015263,
+        "min": 4.4466,
+        "max": 12.384,
+        "skew": -0.18017258158212796,
+        "iqr_outliers": 0,
+        "n_unique": 23
+      }
+    ],
+    "target_correlations": {
+      "ripening_days": 0.863343982882404,
+      "lci_cow_milk_highland_kg": 0.7935486521195261,
+      "whey_coproduct_kg_per_kg_cheese": 0.7072813875540487,
+      "lci_goat_milk_kg": -0.6459731125188406,
+      "lci_total_raw_milk_kg": 0.6344526570740127,
+      "allocation_skimming_to_draining": -0.30604405761484305,
+      "allocation_before_skimming": -0.28886618438075223,
+      "lci_cow_milk_lowland_kg": -0.19131193371820499,
+      "lci_sheep_milk_kg": 0.17589971575926067,
+      "cream_coproduct_kg_per_kg_cheese": 0.05523181381370655,
+      "max_authorized_distance_km": 0.038837005008240104
+    },
+    "collinear_pairs": [
+      {
+        "a": "whey_coproduct_kg_per_kg_cheese",
+        "b": "lci_total_raw_milk_kg",
+        "spearman": 0.9598874010380141
+      },
+      {
+        "a": "allocation_before_skimming",
+        "b": "allocation_skimming_to_draining",
+        "spearman": 0.940214328337809
+      }
+    ],
+    "categorical": {
+      "technology": [
+        {
+          "level": "Bloomy rind cheese",
+          "count": 18,
+          "target_mean": 5.939056277777778
+        },
+        {
+          "level": "Pressed uncooked cheese",
+          "count": 9,
+          "target_mean": 9.799327666666667
+        },
+        {
+          "level": "Blue veined cheese",
+          "count": 7,
+          "target_mean": 8.617156428571429
+        },
+        {
+          "level": "Washed rind cheese",
+          "count": 7,
+          "target_mean": 7.708114857142857
+        },
+        {
+          "level": "Pressed cooked cheese",
+          "count": 3,
+          "target_mean": 14.840783
+        }
+      ],
+      "milk_type": [
+        {
+          "level": "cow",
+          "count": 28,
+          "target_mean": 8.95818742857143
+        },
+        {
+          "level": "goat",
+          "count": 14,
+          "target_mean": 5.756444571428572
+        },
+        {
+          "level": "sheep",
+          "count": 2,
+          "target_mean": 11.238369
+        }
+      ]
+    },
+    "missing_features": {},
+    "geography": {
+      "FR": 44
+    },
+    "reference_year": {
+      "2020/2022": 44
+    },
+    "class_balance_note": "Imbalance measured on the largest categorical feature level share: 41%"
+  },
+  "task2b_pdo_cheese_post_farm": {
+    "n": 44,
+    "target": "gwp_base_post_farm_total_kgco2e_per_kg",
+    "target_unit": "kg CO\u2082e / kg ripened cheese",
+    "target_summary": {
+      "count": 44.0,
+      "mean": 2.072631431818182,
+      "std": 2.037799810953395,
+      "min": 0.491968,
+      "25%": 0.8296555,
+      "50%": 1.3958645,
+      "75%": 2.0424232499999997,
+      "max": 9.040749
+    },
+    "target_skew": 2.235658387241551,
+    "target_hist": {
+      "counts": [
+        12,
+        8,
+        5,
+        10,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        3,
+        0,
+        0,
+        0,
+        1
+      ],
+      "edges": [
+        0.491968,
+        0.91940705,
+        1.3468461,
+        1.7742851499999999,
+        2.2017242,
+        2.62916325,
+        3.0566022999999998,
+        3.48404135,
+        3.9114804,
+        4.33891945,
+        4.7663585,
+        5.19379755,
+        5.6212366,
+        6.04867565,
+        6.4761147,
+        6.9035537499999995,
+        7.3309928,
+        7.75843185,
+        8.1858709,
+        8.61330995,
+        9.040749
+      ]
+    },
+    "numeric_features": [
+      {
+        "feature": "ripening_days",
+        "missing": 0,
+        "mean": 32.29545454545455,
+        "std": 34.443468713210144,
+        "min": 6.0,
+        "max": 150.0,
+        "skew": 2.254281041272925,
+        "iqr_outliers": 5,
+        "n_unique": 22
+      },
+      {
+        "feature": "allocation_before_skimming",
+        "missing": 0,
+        "mean": 0.4866008391780417,
+        "std": 0.05652853420550415,
+        "min": 0.382,
+        "max": 0.686,
+        "skew": 1.123424767288566,
+        "iqr_outliers": 4,
+        "n_unique": 37
+      },
+      {
+        "feature": "allocation_skimming_to_draining",
+        "missing": 0,
+        "mean": 0.4926818181818182,
+        "std": 0.05323260616772426,
+        "min": 0.41,
+        "max": 0.686,
+        "skew": 1.2673532040588924,
+        "iqr_outliers": 2,
+        "n_unique": 39
+      },
+      {
+        "feature": "allocation_after_draining",
+        "missing": 0,
+        "mean": 1.0,
+        "std": 0.0,
+        "min": 1.0,
+        "max": 1.0,
+        "skew": NaN,
+        "iqr_outliers": 0,
+        "n_unique": 1
+      },
+      {
+        "feature": "whey_coproduct_kg_per_kg_cheese",
+        "missing": 0,
+        "mean": 7.4418181818181806,
+        "std": 1.6049187079714091,
+        "min": 3.91,
+        "max": 10.11,
+        "skew": -0.1852753075261511,
+        "iqr_outliers": 0,
+        "n_unique": 33
+      },
+      {
+        "feature": "max_authorized_distance_km",
+        "missing": 0,
+        "mean": 118.36363636363636,
+        "std": 62.74065515855854,
+        "min": 15.0,
+        "max": 250.0,
+        "skew": 0.3049099411594763,
+        "iqr_outliers": 0,
+        "n_unique": 39
+      },
+      {
+        "feature": "lci_total_raw_milk_kg",
+        "missing": 0,
+        "mean": 8.691541227272728,
+        "std": 1.8227717170015263,
+        "min": 4.4466,
+        "max": 12.384,
+        "skew": -0.18017258158212796,
+        "iqr_outliers": 0,
+        "n_unique": 23
+      },
+      {
+        "feature": "lci_milk_transport_tkm",
+        "missing": 0,
+        "mean": 1.0272612073181817,
+        "std": 0.6099932328294685,
+        "min": 0.1548,
+        "max": 2.866375,
+        "skew": 0.8456145483702572,
+        "iqr_outliers": 1,
+        "n_unique": 44
+      },
+      {
+        "feature": "lci_milk_storage_kwh",
+        "missing": 0,
+        "mean": 0.8496932562779637,
+        "std": 0.29964787161873563,
+        "min": 0.0,
+        "max": 1.656,
+        "skew": -0.17615533934392952,
+        "iqr_outliers": 1,
+        "n_unique": 25
+      },
+      {
+        "feature": "lci_processing_electricity_kwh",
+        "missing": 0,
+        "mean": 0.27470553535984843,
+        "std": 0.12326214423495822,
+        "min": 0.0,
+        "max": 0.5416799999999999,
+        "skew": 0.27795880403475115,
+        "iqr_outliers": 0,
+        "n_unique": 37
+      },
+      {
+        "feature": "lci_ripening_electricity_kwh_initial",
+        "missing": 0,
+        "mean": 20.187613636363636,
+        "std": 21.530567791059088,
+        "min": 3.75,
+        "max": 93.8,
+        "skew": 2.254800592111822,
+        "iqr_outliers": 5,
+        "n_unique": 23
+      },
+      {
+        "feature": "lci_cleaning_water_kg",
+        "missing": 0,
+        "mean": 25.463863636363637,
+        "std": 5.298772221065929,
+        "min": 13.0,
+        "max": 36.0,
+        "skew": -0.27079325251102904,
+        "iqr_outliers": 0,
+        "n_unique": 20
+      }
+    ],
+    "target_correlations": {
+      "ripening_days": 0.9949866281688599,
+      "lci_ripening_electricity_kwh_initial": 0.9945276296926383,
+      "lci_processing_electricity_kwh": 0.6286985881506815,
+      "whey_coproduct_kg_per_kg_cheese": 0.5021874231032138,
+      "lci_total_raw_milk_kg": 0.45766952115750037,
+      "lci_cleaning_water_kg": 0.3941524837977196,
+      "lci_milk_storage_kwh": 0.2827942275997667,
+      "allocation_before_skimming": -0.2521411277525502,
+      "allocation_skimming_to_draining": -0.24486343992491127,
+      "lci_milk_transport_tkm": 0.11670190274841438,
+      "max_authorized_distance_km": 0.03467841463530695
+    },
+    "collinear_pairs": [
+      {
+        "a": "ripening_days",
+        "b": "lci_ripening_electricity_kwh_initial",
+        "spearman": 0.9998937394843365
+      },
+      {
+        "a": "whey_coproduct_kg_per_kg_cheese",
+        "b": "lci_total_raw_milk_kg",
+        "spearman": 0.9598874010380141
+      },
+      {
+        "a": "lci_total_raw_milk_kg",
+        "b": "lci_cleaning_water_kg",
+        "spearman": 0.9590687402673457
+      },
+      {
+        "a": "allocation_before_skimming",
+        "b": "allocation_skimming_to_draining",
+        "spearman": 0.940214328337809
+      },
+      {
+        "a": "whey_coproduct_kg_per_kg_cheese",
+        "b": "lci_cleaning_water_kg",
+        "spearman": 0.9298151977697545
+      },
+      {
+        "a": "max_authorized_distance_km",
+        "b": "lci_milk_transport_tkm",
+        "spearman": 0.9234185165389357
+      }
+    ],
+    "categorical": {
+      "technology": [
+        {
+          "level": "Bloomy rind cheese",
+          "count": 18,
+          "target_mean": 0.9985355555555555
+        },
+        {
+          "level": "Pressed uncooked cheese",
+          "count": 9,
+          "target_mean": 3.163705222222222
+        },
+        {
+          "level": "Blue veined cheese",
+          "count": 7,
+          "target_mean": 1.6084981428571428
+        },
+        {
+          "level": "Washed rind cheese",
+          "count": 7,
+          "target_mean": 1.5954108571428571
+        },
+        {
+          "level": "Pressed cooked cheese",
+          "count": 3,
+          "target_mean": 7.440477666666667
+        }
+      ],
+      "milk_type": [
+        {
+          "level": "cow",
+          "count": 28,
+          "target_mean": 2.5332718214285714
+        },
+        {
+          "level": "goat",
+          "count": 14,
+          "target_mean": 0.8607458571428571
+        },
+        {
+          "level": "sheep",
+          "count": 2,
+          "target_mean": 4.106865
+        }
+      ]
+    },
+    "missing_features": {},
+    "geography": {
+      "FR": 44
+    },
+    "reference_year": {
+      "2020/2022": 44
+    },
+    "class_balance_note": "Imbalance measured on the largest categorical feature level share: 41%"
+  }
+}

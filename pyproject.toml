@@ -1,0 +1,41 @@
+[project]
+name = "dairyeco-ai"
+version = "0.0.1"
+description = "DairyEco AI: ML-based economic and environmental decision support for sustainable dairy manufacturing and packaging (research prototype)."
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "pandas>=2.2",
+    "openpyxl>=3.1",
+    "pdfplumber>=0.11",
+    "pydantic>=2.14.3",
+    "scikit-learn>=1.9.1",
+    "pyarrow>=26.0.1",
+    "fastapi>=0.162.4",
+    "streamlit>=1.67.0",
+    "catboost>=1.2.10",
+]
+
+[project.scripts]
+dairyeco = "dairyeco.cli:main"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=8",
+    "ruff>=0.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dairyeco"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]

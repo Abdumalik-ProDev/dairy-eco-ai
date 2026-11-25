@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-11-25T05:28:07+00:00",
+  "code_fingerprint": {
+    "vcs_commit": "Not recorded / Unknown (project is not under version control)",
+    "files": {
+      "src/dairyeco/data/inventory.py": "ba6ad02f03df86a1289186651d391ae7557ef0cd6d38de514e0419cd2cbb3212",
+      "src/dairyeco/data/audit_inspectors.py": "dd597bd66958c3c55baffdc46e8ae2101e3ecfa138ff6a709351db4056795180",
+      "src/dairyeco/data/harmonize.py": "36976aeccbdd22aa3966a96268f089998ec036ebec649bc1d3df60513e496c5e",
+      "src/dairyeco/models/registry.py": "ffefcec654c30c224a05ae938271ab3111be0d9e5a9878cc0ab94cb5b73e98b8",
+      "src/dairyeco/models/pipeline.py": "7d836bb850147af900e57292ea520f5611c5a6a56e2a8c67492eb16ace19570e",
+      "src/dairyeco/lca/engine.py": "5e65af8fe469ec1a9e8352c96d008068cd477407562d7e99a85b0c8a775eff58",
+      "src/dairyeco/economics/engine.py": "dcc070572a662161b7aed95641bdda1d2c4c0689cd328b978626756b6ca3d659",
+      "src/dairyeco/optimization/pareto.py": "1ebf29e2ef9ebbd8e6842c70ac4f163db9e7a215034187e532fb48fe67edb4a2"
+    },
+    "aggregate_sha256": "1b4eddccf19bca35d60454964d898f0e5980bfe54ad72aa2dd2e2c819a868a3a"
+  },
+  "environment": {
+    "python": "3.13.15",
+    "platform": "Linux-7.3.6-1-cachyos-x86_64-with-glibc2.44",
+    "scikit-learn": "1.9.1",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "catboost": "1.2.10",
+    "joblib": "1.6.0",
+    "streamlit": "1.67.0",
+    "scipy": "1.18.1"
+  },
+  "historical_records_added": [],
+  "records": [
+    "dataset_registry",
+    "lineage",
+    "cleaning_log",
+    "eda",
+    "feature_registry",
+    "model_registry",
+    "split_audit",
+    "risk_register",
+    "decision_register",
+    "readiness",
+    "pipeline_overview",
+    "dependency_graph"
+  ]
+}

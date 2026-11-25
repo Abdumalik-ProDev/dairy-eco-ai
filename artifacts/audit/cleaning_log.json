@@ -1,0 +1,242 @@
+[
+  {
+    "id": "C01",
+    "stage": "cleaning",
+    "operation": "Duplicate Code AGB rows",
+    "original": "7 duplicated codes (2458 rows / 2451 unique)",
+    "method": "Composite key (Code AGB, LCI name)",
+    "reason": "Duplicates are non-dairy (software vs packaging-corrected versions)",
+    "affected": 0,
+    "result": "0 duplicated code_agb in processed dairy table when affected == 0",
+    "risks": "Other categories would need explicit deduplication",
+    "alternatives": "Keep packaging-corrected row only",
+    "code": "src/dairyeco/data/harmonize.py::build_agribalyse_dairy_table"
+  },
+  {
+    "id": "C02",
+    "stage": "cleaning",
+    "operation": "Trailing empty formula rows in 'Detail etape'",
+    "original": "12445 empty rows",
+    "method": "Keep rows with Code AGB not None",
+    "reason": "Rows are spreadsheet formula padding",
+    "affected": 12445,
+    "result": "2458 valid stage rows",
+    "risks": "None identified",
+    "alternatives": "Row-range slicing",
+    "code": "src/dairyeco/data/harmonize.py::build_agribalyse_dairy_table"
+  },
+  {
+    "id": "C03",
+    "stage": "cleaning",
+    "operation": "'-' strings used for exact zero in stage cells",
+    "original": "string '-'",
+    "method": "_parse_stage_float: '-' -> 0.0",
+    "reason": "Source documents '-' as zero",
+    "affected": "Not recorded / Unknown (not counted by pipeline)",
+    "result": "0 core rows now have transformation GWP == 0 (includes true zeros)",
+    "risks": "Cannot separate '-' zeros from numeric zeros after conversion",
+    "alternatives": "NaN + indicator",
+    "code": "src/dairyeco/data/harmonize.py::_parse_stage_float"
+  },
+  {
+    "id": "C04",
+    "stage": "cleaning",
+    "operation": "Filter to core dairy products",
+    "original": "277 dairy-adjacent rows",
+    "method": "is_core_dairy == True",
+    "reason": "Task 1 targets core dairy products; infant/beverage rows are adjacent",
+    "affected": 22,
+    "result": "255 rows used for Task 1",
+    "risks": "Excludes flavoured milks and infant dairy",
+    "alternatives": "Include with category flag",
+    "code": "src/dairyeco/models/pipeline.py::run_task1_agribalyse_dairy_regression"
+  },
+  {
+    "id": "C05",
+    "stage": "integration",
+    "operation": "Packaging stage subtracted (de-packaging)",
+    "original": "Totals include baseline packaging",
+    "method": "total - Emballage stage, clipped at 0",
+    "reason": "Avoid double counting packaging when swapping packaging",
+    "affected": 255,
+    "result": "mean packaging share 12.4%",
+    "risks": "Clipping at 0 hides negative differences; non-GWP indicators used as features still include packaging",
+    "alternatives": "Sum the 5 non-packaging stages",
+    "code": "src/dairyeco/data/harmonize.py::build_agribalyse_dairy_table"
+  },
+  {
+    "id": "C06",
+    "stage": "cleaning",
+    "operation": "PDO cheese name normalisation",
+    "original": "44 cheeses with spelling/whitespace mismatches",
+    "method": "strip + Camenbert->Camembert",
+    "reason": "Exact string joins fail otherwise",
+    "affected": 44,
+    "result": "44-to-44 set equality across 7 tables",
+    "risks": "Manual map covers one known typo only",
+    "alternatives": "Fuzzy matching",
+    "code": "src/dairyeco/data/audit_inspectors.py::normalize_pdo_cheese_name"
+  },
+  {
+    "id": "C07",
+    "stage": "cleaning",
+    "operation": "PDO LCIA long -> wide pivot",
+    "original": "1232 indicator rows",
+    "method": "group by cheese",
+    "reason": "Rows are not independent samples",
+    "affected": 1232,
+    "result": "44 observations",
+    "risks": "Tiny N",
+    "alternatives": "None (data constraint)",
+    "code": "src/dairyeco/data/harmonize.py::build_pdo_cheese_harmonized_table"
+  },
+  {
+    "id": "C08",
+    "stage": "cleaning",
+    "operation": "Unit normalisation of USLCI reference flows",
+    "original": "reference amounts in kg, Mg, t, sh tn, 1000 kg, 1.105 kg ...",
+    "method": "divide by qref_amount * UNIT_TO_KG",
+    "reason": "Per-kg factors needed",
+    "affected": "56 curated processes",
+    "result": "per-normalised-unit columns",
+    "risks": "Only listed units supported",
+    "alternatives": "pint library",
+    "code": "src/dairyeco/data/harmonize.py::build_uslci_curated_table"
+  },
+  {
+    "id": "C09",
+    "stage": "leakage",
+    "operation": "Forbidden-column guard",
+    "original": "targets, identifiers and sibling GWP columns present in processed tables",
+    "method": "assert_no_feature_leakage",
+    "reason": "Prevent trivially recoverable targets and ID memorisation",
+    "affected": 42,
+    "result": "ValueError if violated",
+    "risks": "List is hand-maintained",
+    "alternatives": "Automatic correlation screen",
+    "code": "src/dairyeco/models/pipeline.py::assert_no_feature_leakage"
+  },
+  {
+    "id": "M-task3a_surrogate_gwp",
+    "stage": "preprocessing",
+    "operation": "Imputation, scaling, encoding (task3a_surrogate_gwp)",
+    "original": "1200 rows; 0 missing cells in 21 features; 281 IQR-outlier cells (1.5xIQR) across 15 numeric features",
+    "method": "numeric: SimpleImputer(median)+RobustScaler; categorical: SimpleImputer(most_frequent)+OneHotEncoder(min_frequency=None); fitted inside each CV fold",
+    "reason": "Median/IQR statistics resist the heavy-tailed LCA values; no rows are deleted",
+    "affected": {
+      "missing_cells": 0,
+      "outlier_cells": 281,
+      "top_outlier_features": {
+        "total_bom_mass_g_per_pkg": 153,
+        "effective_bom_mass_kg_per_fu": 63,
+        "weighted_avg_material_price_usd_per_kg": 45,
+        "net_fill_mass_kg": 14,
+        "dairy_non_packaging_gwp_per_kg": 6
+      },
+      "numeric": 15,
+      "categorical": 6
+    },
+    "result": "No record removed; outliers retained and down-weighted by robust scaling",
+    "risks": "Outliers (e.g. Roquefort, butters) remain influential; imputation untested when missing cells = 0",
+    "alternatives": "Winsorisation, log-transform of skewed targets",
+    "code": "src/dairyeco/models/pipeline.py::_build_preprocessor"
+  },
+  {
+    "id": "M-task3b_surrogate_cost",
+    "stage": "preprocessing",
+    "operation": "Imputation, scaling, encoding (task3b_surrogate_cost)",
+    "original": "1200 rows; 0 missing cells in 21 features; 281 IQR-outlier cells (1.5xIQR) across 15 numeric features",
+    "method": "numeric: SimpleImputer(median)+RobustScaler; categorical: SimpleImputer(most_frequent)+OneHotEncoder(min_frequency=None); fitted inside each CV fold",
+    "reason": "Median/IQR statistics resist the heavy-tailed LCA values; no rows are deleted",
+    "affected": {
+      "missing_cells": 0,
+      "outlier_cells": 281,
+      "top_outlier_features": {
+        "total_bom_mass_g_per_pkg": 153,
+        "effective_bom_mass_kg_per_fu": 63,
+        "weighted_avg_material_price_usd_per_kg": 45,
+        "net_fill_mass_kg": 14,
+        "dairy_non_packaging_gwp_per_kg": 6
+      },
+      "numeric": 15,
+      "categorical": 6
+    },
+    "result": "No record removed; outliers retained and down-weighted by robust scaling",
+    "risks": "Outliers (e.g. Roquefort, butters) remain influential; imputation untested when missing cells = 0",
+    "alternatives": "Winsorisation, log-transform of skewed targets",
+    "code": "src/dairyeco/models/pipeline.py::_build_preprocessor"
+  },
+  {
+    "id": "M-task1_agribalyse_gwp",
+    "stage": "preprocessing",
+    "operation": "Imputation, scaling, encoding (task1_agribalyse_gwp)",
+    "original": "255 rows; 139 missing cells in 7 features; 56 IQR-outlier cells (1.5xIQR) across 3 numeric features",
+    "method": "numeric: SimpleImputer(median)+RobustScaler; categorical: SimpleImputer(most_frequent)+OneHotEncoder(min_frequency=None); fitted inside each CV fold",
+    "reason": "Median/IQR statistics resist the heavy-tailed LCA values; no rows are deleted",
+    "affected": {
+      "missing_cells": 139,
+      "outlier_cells": 56,
+      "top_outlier_features": {
+        "density_kg_per_l": 55,
+        "milk_yield_kg_milk_per_kg_product": 1,
+        "dqr_overall": 0
+      },
+      "numeric": 3,
+      "categorical": 4
+    },
+    "result": "No record removed; outliers retained and down-weighted by robust scaling",
+    "risks": "Outliers (e.g. Roquefort, butters) remain influential; imputation untested when missing cells = 0",
+    "alternatives": "Winsorisation, log-transform of skewed targets",
+    "code": "src/dairyeco/models/pipeline.py::_build_preprocessor"
+  },
+  {
+    "id": "M-task2a_pdo_cheese_total",
+    "stage": "preprocessing",
+    "operation": "Imputation, scaling, encoding (task2a_pdo_cheese_total)",
+    "original": "44 rows; 0 missing cells in 14 features; 22 IQR-outlier cells (1.5xIQR) across 12 numeric features",
+    "method": "numeric: SimpleImputer(median)+RobustScaler; categorical: SimpleImputer(most_frequent)+OneHotEncoder(min_frequency=2); fitted inside each CV fold",
+    "reason": "Median/IQR statistics resist the heavy-tailed LCA values; no rows are deleted",
+    "affected": {
+      "missing_cells": 0,
+      "outlier_cells": 22,
+      "top_outlier_features": {
+        "cream_coproduct_kg_per_kg_cheese": 11,
+        "ripening_days": 5,
+        "allocation_before_skimming": 4,
+        "allocation_skimming_to_draining": 2,
+        "allocation_after_draining": 0
+      },
+      "numeric": 12,
+      "categorical": 2
+    },
+    "result": "No record removed; outliers retained and down-weighted by robust scaling",
+    "risks": "Outliers (e.g. Roquefort, butters) remain influential; imputation untested when missing cells = 0",
+    "alternatives": "Winsorisation, log-transform of skewed targets",
+    "code": "src/dairyeco/models/pipeline.py::_build_preprocessor"
+  },
+  {
+    "id": "M-task2b_pdo_cheese_post_farm",
+    "stage": "preprocessing",
+    "operation": "Imputation, scaling, encoding (task2b_pdo_cheese_post_farm)",
+    "original": "44 rows; 0 missing cells in 14 features; 18 IQR-outlier cells (1.5xIQR) across 12 numeric features",
+    "method": "numeric: SimpleImputer(median)+RobustScaler; categorical: SimpleImputer(most_frequent)+OneHotEncoder(min_frequency=2); fitted inside each CV fold",
+    "reason": "Median/IQR statistics resist the heavy-tailed LCA values; no rows are deleted",
+    "affected": {
+      "missing_cells": 0,
+      "outlier_cells": 18,
+      "top_outlier_features": {
+        "ripening_days": 5,
+        "lci_ripening_electricity_kwh_initial": 5,
+        "allocation_before_skimming": 4,
+        "allocation_skimming_to_draining": 2,
+        "lci_milk_transport_tkm": 1
+      },
+      "numeric": 12,
+      "categorical": 2
+    },
+    "result": "No record removed; outliers retained and down-weighted by robust scaling",
+    "risks": "Outliers (e.g. Roquefort, butters) remain influential; imputation untested when missing cells = 0",
+    "alternatives": "Winsorisation, log-transform of skewed targets",
+    "code": "src/dairyeco/models/pipeline.py::_build_preprocessor"
+  }
+]

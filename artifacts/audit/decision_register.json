@@ -1,0 +1,202 @@
+[
+  {
+    "id": "D01",
+    "what": "Subtract AGRIBALYSE packaging stage from product GWP",
+    "why": "Baseline totals embed packaging; swapping packaging would double count",
+    "file": "src/dairyeco/data/harmonize.py",
+    "symbol": "build_agribalyse_dairy_table",
+    "symbol_verified": true,
+    "inputs": "AGRIBALYSE Synthese + Detail etape",
+    "outputs": "agribalyse_dairy_products.csv",
+    "tests": [
+      "tests/test_phases_1_to_4.py::test_phase1_harmonized_tables_and_provenance"
+    ],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "Other stages keep packaging-related assumptions"
+  },
+  {
+    "id": "D02",
+    "what": "Normalise PDO cheese names before joining",
+    "why": "Whitespace and Camenbert/Camembert typo break joins",
+    "file": "src/dairyeco/data/audit_inspectors.py",
+    "symbol": "normalize_pdo_cheese_name",
+    "symbol_verified": true,
+    "inputs": "7 PDO workbooks",
+    "outputs": "44-cheese table",
+    "tests": [
+      "tests/test_phase0_audit.py::test_pdo_cheese_audit_inspector"
+    ],
+    "alternatives": "Fuzzy matching (not recorded as considered)",
+    "limitation": "One hard-coded typo"
+  },
+  {
+    "id": "D03",
+    "what": "Treat 44 cheeses (not 1,232 LCIA rows) as observations",
+    "why": "Rows are 44 x 28 indicators, not independent",
+    "file": "src/dairyeco/data/harmonize.py",
+    "symbol": "build_pdo_cheese_harmonized_table",
+    "symbol_verified": true,
+    "inputs": "data_PDOcheeses_LCIA.xlsx",
+    "outputs": "pdo_cheese_harmonized.csv",
+    "tests": [
+      "tests/test_phases_1_to_4.py::test_phase1_harmonized_tables_and_provenance"
+    ],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "N=44"
+  },
+  {
+    "id": "D04",
+    "what": "Mark proxy factors with source_type",
+    "why": "USLCI lacks container glass/LPB; blow-molding",
+    "file": "src/dairyeco/data/harmonize.py",
+    "symbol": "build_unified_packaging_impact_factors",
+    "symbol_verified": true,
+    "inputs": "NIST CSV, USLCI table, literals",
+    "outputs": "packaging_impact_factors.csv",
+    "tests": [
+      "tests/test_phases_1_to_4.py::test_phase1_harmonized_tables_and_provenance"
+    ],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "Proxy rows marked explicitly as DataSourceType.PROXY"
+  },
+  {
+    "id": "D05",
+    "what": "Block forbidden columns from features",
+    "why": "Prevent target/ID/LCIA leakage",
+    "file": "src/dairyeco/models/registry.py",
+    "symbol": "assert_no_feature_leakage",
+    "symbol_verified": true,
+    "inputs": "feature list",
+    "outputs": "ValueError or pass",
+    "tests": [
+      "tests/test_phases_1_to_4.py::test_phase3_ml_leakage_guard_and_artifacts"
+    ],
+    "alternatives": "Automatic correlation screen (not recorded)",
+    "limitation": "Hand-maintained list"
+  },
+  {
+    "id": "D06",
+    "what": "Median/RobustScaler + one-hot inside a Pipeline",
+    "why": "Heavy tails; avoids fitting on validation data",
+    "file": "src/dairyeco/models/registry.py",
+    "symbol": "build_preprocessor",
+    "symbol_verified": true,
+    "inputs": "feature table",
+    "outputs": "design matrix",
+    "tests": [
+      "tests/test_phases_1_to_4.py::test_phase3_ml_leakage_guard_and_artifacts"
+    ],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "No log-transform of skewed targets"
+  },
+  {
+    "id": "D07",
+    "what": "Candidate set of 8 regularised models incl. dummy baseline",
+    "why": "Compare linear, bagging, boosting, ensemble under shared splits",
+    "file": "src/dairyeco/models/pipeline.py",
+    "symbol": "_candidate_regressors",
+    "symbol_verified": true,
+    "inputs": "N (sample size)",
+    "outputs": "estimators + search grids",
+    "tests": [],
+    "alternatives": "Candidate pool itself: Not recorded / Unknown",
+    "limitation": "Grids are small, hand-chosen"
+  },
+  {
+    "id": "D08",
+    "what": "Champion = penalised OOF MAE among well-generalised models",
+    "why": "Prefer generalisation over raw accuracy",
+    "file": "src/dairyeco/models/pipeline.py",
+    "symbol": "_evaluate_candidates",
+    "symbol_verified": true,
+    "inputs": "OOF predictions",
+    "outputs": "champion + diagnostics",
+    "tests": [],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "Mitigated by 20% untouched holdout evaluation"
+  },
+  {
+    "id": "D09",
+    "what": "Thresholds for over/underfit diagnosis",
+    "why": "Scale-invariant gap rules",
+    "file": "src/dairyeco/models/registry.py",
+    "symbol": "classify_fit_diagnosis",
+    "symbol_verified": true,
+    "inputs": "train/OOF metrics",
+    "outputs": "fit_diagnosis label",
+    "tests": [],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "Thresholds (0.045, 0.10, ...) are heuristic"
+  },
+  {
+    "id": "D10",
+    "what": "GroupKFold by product for Task 3",
+    "why": "Same product must not appear in train and validation",
+    "file": "src/dairyeco/models/pipeline.py",
+    "symbol": "run_task3_simulator_surrogate",
+    "symbol_verified": true,
+    "inputs": "simulated scenarios",
+    "outputs": "group-safe splits",
+    "tests": [
+      "tests/test_audit_lab.py::test_split_audit_checks"
+    ],
+    "alternatives": "Random KFold (rejected: would leak products)",
+    "limitation": "Only product-level grouping"
+  },
+  {
+    "id": "D11",
+    "what": "StratifiedKFold(11) for 44 cheeses",
+    "why": "Balanced target quartiles in 4-cheese folds",
+    "file": "src/dairyeco/models/pipeline.py",
+    "symbol": "run_task2_pdo_cheese_case_study",
+    "symbol_verified": true,
+    "inputs": "44 cheeses",
+    "outputs": "OOF predictions",
+    "tests": [],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "High variance"
+  },
+  {
+    "id": "D12",
+    "what": "Generate 1,200 simulator scenarios",
+    "why": "Create labelled data for a fast surrogate",
+    "file": "src/dairyeco/models/pipeline.py",
+    "symbol": "generate_simulated_scenario_dataset",
+    "symbol_verified": true,
+    "inputs": "products x presets x random perturbations",
+    "outputs": "simulated_packaging_scenarios.csv",
+    "tests": [],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "Perturbation ranges are assumptions"
+  },
+  {
+    "id": "D13",
+    "what": "Executive results come from deterministic engines",
+    "why": "Exact, auditable, no ML error",
+    "file": "src/dairyeco/lca/engine.py",
+    "symbol": "evaluate_environmental_lca",
+    "symbol_verified": true,
+    "inputs": "product, packaging, assumptions",
+    "outputs": "EnvironmentalResult",
+    "tests": [
+      "tests/test_phases_1_to_4.py::test_phase2_hand_calculated_lca_and_economic_formulas"
+    ],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "Factor quality bounds accuracy"
+  },
+  {
+    "id": "D14",
+    "what": "Payback from incremental cash flows",
+    "why": "Correct financial logic",
+    "file": "src/dairyeco/economics/engine.py",
+    "symbol": "calculate_payback_schedule",
+    "symbol_verified": true,
+    "inputs": "CAPEX, annual cash flow, horizon",
+    "outputs": "payback status/years",
+    "tests": [
+      "tests/test_phases_1_to_4.py::test_payback_schedule_and_scenario_dynamics"
+    ],
+    "alternatives": "Not recorded / Unknown",
+    "limitation": "Assumed inputs"
+  }
+]
